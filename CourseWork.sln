@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Watcher", "Watcher\Watcher.csproj", "{E61238DA-1242-40F2-8455-7292D6CF8CC6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E61238DA-1242-40F2-8455-7292D6CF8CC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E61238DA-1242-40F2-8455-7292D6CF8CC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E61238DA-1242-40F2-8455-7292D6CF8CC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E61238DA-1242-40F2-8455-7292D6CF8CC6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {96AB8A55-AE8A-436B-981E-256393E36AFF}
+	EndGlobalSection
+EndGlobal
