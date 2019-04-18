@@ -27,7 +27,9 @@ namespace Watcher
 
         private void BtnEnter_Click(object sender, RoutedEventArgs e)
         {
-
+            var wnd = new WorkWindow();
+            wnd.Show();
+            Close();
         }
     }
 }
