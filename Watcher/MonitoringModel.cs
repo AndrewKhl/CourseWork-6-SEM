@@ -100,6 +100,11 @@ namespace Watcher
             ThreadPool.QueueUserWorkItem(Scanning);
         }
 
+        public void StopSacnning()
+        {
+            _runScan = false;
+        }
+
         //public void StartScanning()
         //{
         //    //WriteConfig(new Dictionary<string, Tuple<Tuple<string, string>, Tuple<string, string>>> {

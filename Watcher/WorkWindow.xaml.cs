@@ -20,38 +20,40 @@ namespace Watcher
     /// </summary>
 	public partial class WorkWindow : Window
     {
-        Thread backgroundThread;
+        MonitoringModel _monitor;
 
         public WorkWindow()
         {
             InitializeComponent();
-           // DataContext = new ViewModel();
-            backgroundThread = null;
-            btnStop.IsEnabled = false;
+            _monitor = new MonitoringModel();
+            DataContext = _monitor;
+            //btnStop.IsEnabled = false;
         }
 
         private void StartApplication(object sender, RoutedEventArgs e)
         {
+            _monitor.StartScanning();
            // (DataContext as ViewModel).UseGoodProcesses = UseGoodProc.IsChecked;
-            if (backgroundThread == null)
-            {
-               // backgroundThread = new Thread(new ThreadStart((DataContext as ViewModel).StartScanning));
-                backgroundThread.Start();
-                btnStart.IsEnabled = false;
-                btnStop.IsEnabled = true;
-                Visibility = Visibility.Hidden;
-            }
+            //if (backgroundThread == null)
+            //{
+            //   // backgroundThread = new Thread(new ThreadStart((DataContext as ViewModel).StartScanning));
+            //    backgroundThread.Start();
+            //    btnStart.IsEnabled = false;
+            //    btnStop.IsEnabled = true;
+            //    Visibility = Visibility.Hidden;
+            //}
         }
 
         private void StopThread(object sender, RoutedEventArgs e)
         {
-            if (backgroundThread != null)
-            {
-                backgroundThread.Abort();
-                backgroundThread = null;
-                btnStop.IsEnabled = false;
-                btnStart.IsEnabled = true;
-            }
+            
+            //if (backgroundThread != null)
+            //{
+            //    backgroundThread.Abort();
+            //    backgroundThread = null;
+            //    btnStop.IsEnabled = false;
+            //    btnStart.IsEnabled = true;
+            //}
         }
 
         private void OpenProcessesWindow(object sender, RoutedEventArgs e)
@@ -62,10 +64,22 @@ namespace Watcher
             //processWindow.Show();
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void BtnStop_Click(object sender, RoutedEventArgs e)
         {
-            if (backgroundThread != null)
-                backgroundThread.Abort();
+            ChangeEnabledButton();
+            _monitor.StopSacnning();
+        }
+
+        private void BtnStart_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeEnabledButton();
+            _monitor.StopSacnning();
+        }
+
+        private void ChangeEnabledButton()
+        {
+            btnStart.IsEnabled = btnStop.IsEnabled;
+            btnStop.IsEnabled = !btnStop.IsEnabled;
         }
     }
 
