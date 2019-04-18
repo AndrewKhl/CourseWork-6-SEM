@@ -3,13 +3,18 @@ using System.Net.NetworkInformation;
 
 namespace Watcher
 {
-    class Loader
+    internal class Loader
     {
-        private  PerformanceCounter cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-        private  PerformanceCounter ramCounter = new PerformanceCounter("Memory", "% Committed Bytes In Use");
-        private  PerformanceCounter diskCounter = new PerformanceCounter("PhysicalDisk", "% Disk Time", "_Total");
+        private readonly PerformanceCounter _cpuCounter,_ramCounter, _diskCounter; 
 
-        public  long GetNetworkLoad()
+        internal Loader()
+        {
+            _cpuCounter = GetCounter("Processor", "% Processor Time", "_Total"); 
+            _ramCounter = GetCounter("Memory", "% Committed Bytes In Use");
+            _diskCounter = GetCounter("PhysicalDisk", "% Disk Time", "_Total");
+        }
+
+        public long GetNetworkLoad()
         {
             long maxBandwidth = 0;
             NetworkInterface[] networks = NetworkInterface.GetAllNetworkInterfaces();
@@ -27,19 +32,35 @@ namespace Watcher
             return (long)(maxBandwidth * 0.00098);
         }
 
-        public  float GetCPULoad()
+        public float GetCPULoad()
         {
-            return cpuCounter.NextValue();
+            return _cpuCounter?.NextValue() ?? 0;
         }
 
         public  float GetRAMLoad()
         {
-            return ramCounter.NextValue();
+            return _ramCounter?.NextValue() ?? 0;
         }
 
         public  float GetDiskLoad()
         {
-            return diskCounter.NextValue();
+            return _diskCounter?.NextValue() ?? 0;
+        }
+
+        private PerformanceCounter GetCounter(string category, string counterName, string instanseName = null)
+        {
+            PerformanceCounter counter = null;
+
+            try
+            {
+                counter = instanseName != null ? new PerformanceCounter(category, counterName, instanseName) : new PerformanceCounter(category, counterName);
+            }
+            catch
+            {
+
+            }
+
+            return counter;
         }
     }
 }
