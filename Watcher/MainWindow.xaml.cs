@@ -24,5 +24,10 @@ namespace Watcher
         {
             InitializeComponent();
         }
+
+        private void BtnEnter_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
