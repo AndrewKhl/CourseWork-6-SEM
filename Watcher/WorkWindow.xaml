@@ -1,0 +1,229 @@
+﻿<Window x:Class="Watcher.WorkWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Watcher"
+        mc:Ignorable="d"
+        Icon="pack://application:,,,/icons/icon.ico"
+        Title="Приложение" Height="620" Width="800"
+        Closing="Window_Closing">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="MinWidth" Value="30"/>
+            <Setter Property="Height" Value="26"/>
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="TextAlignment" Value="Right"/>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="Foreground" Value="Red"/>
+                    <Setter Property="ToolTip" 
+                             Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="MinWidth" Value="120"/>
+            <Setter Property="Margin" Value="20 0 20 10"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="CaptionSubThems" TargetType="Label">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.Resources>
+            <local:ShowMessageCommand x:Key="MessageCommand" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.ColumnSpan="3" FontSize="30">Настройки</Label>
+        <Label Grid.Row="1" Grid.Column="1">Загруженность</Label>
+        <Label Grid.Row="1" Grid.Column="2">Длительность</Label>
+        <Label Grid.Row="2" Style="{StaticResource CaptionSubThems}">Процессор</Label>
+        <Label Grid.Row="3" Style="{StaticResource CaptionSubThems}">ОЗУ</Label>
+        <Label Grid.Row="4" Style="{StaticResource CaptionSubThems}">Сеть</Label>
+        <Label Grid.Row="5" Style="{StaticResource CaptionSubThems}">Диск</Label>
+        <Label Grid.Row="6" Style="{StaticResource CaptionSubThems}">Сервер</Label>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <TextBox>
+                <TextBox.Text>
+                    <Binding Path="LoadCPU" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                        <Binding.ValidationRules>
+                            <local:RulesForPersent/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Label>%</Label>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <TextBox>
+                <TextBox.Text>
+                    <Binding Path="LoadRAM" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                        <Binding.ValidationRules>
+                            <local:RulesForPersent/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Label>%</Label>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="1">
+            <TextBox Margin="35 0 0 0">
+                <TextBox.Text>
+                    <Binding Path="LoadNetwork" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                        <Binding.ValidationRules>
+                            <local:RulesForInteger/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Label>кбит/с</Label>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Grid.Column="1">
+            <TextBox>
+                <TextBox.Text>
+                    <Binding Path="LoadDisks" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                        <Binding.ValidationRules>
+                            <local:RulesForPersent/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Label>%</Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="6" Grid.Column="1">
+            <Label>IP Адрес</Label>
+            <TextBox Name="inputID">
+                <TextBox.Text>
+                    <Binding Path="IpAddress">
+                        <Binding.ValidationRules>
+                            <local:RulesForIp/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="2">
+            <TextBox>
+                <TextBox.Text>
+                    <Binding Path="TimeLimitCPU" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                        <Binding.ValidationRules>
+                            <local:RulesForInteger/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Label>сек</Label>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="2">
+            <TextBox>
+                <TextBox.Text>
+                    <Binding Path="TimeLimitRAM" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                        <Binding.ValidationRules>
+                            <local:RulesForInteger/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Label>сек</Label>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="2">
+            <TextBox>
+                <TextBox.Text>
+                    <Binding Path="TimeLimitNetwork" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                        <Binding.ValidationRules>
+                            <local:RulesForInteger/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Label>сек</Label>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Grid.Column="2">
+            <TextBox>
+                <TextBox.Text>
+                    <Binding Path="TimeLimitDisks" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                        <Binding.ValidationRules>
+                            <local:RulesForInteger/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Label>сек</Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="6" Grid.Column="2">
+            <Label>Порт</Label>
+            <TextBox>
+                <TextBox.Text>
+                    <Binding Path="Port">
+                        <Binding.ValidationRules>
+                            <local:RulesForPort/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 -20 0 0" HorizontalAlignment="Right">
+            <CheckBox VerticalAlignment="Center" Name="UseGoodProc"></CheckBox>
+            <Label FontSize="15">Использовать только разрешённые процессы</Label>
+            <Button MinHeight="40" MinWidth="150" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Normal" FontSize="15" Margin="20 0 30 0" Click="OpenProcessesWindow">
+                Добавить процесс
+            </Button>
+        </StackPanel>
+
+        <StackPanel Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+            <Button Name="btnStop" Click="StopThread">Стоп</Button>
+            <Button Name="btnStart" Click="StartApplication">Старт</Button>
+        </StackPanel>
+
+        <!--<tb:TaskbarIcon 
+            IconSource="pack://application:,,,/icons/icon.ico" 
+            ToolTipText="Monitor Tool" 
+            LeftClickCommand="{StaticResource MessageCommand}" 
+            LeftClickCommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />-->
+    </Grid>
+</Window>
