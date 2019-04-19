@@ -8,6 +8,7 @@ namespace Watcher
 {
     class ServerManager
     {
+        //public WatsonTcpClient Client { get; set; }
         //static bool MessageReceived(byte[] data)
         //{
         //    MessageBox.Show("Сообщение от сервера: " + Encoding.UTF8.GetString(data));

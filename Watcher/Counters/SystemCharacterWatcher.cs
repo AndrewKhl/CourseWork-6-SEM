@@ -14,11 +14,11 @@ namespace Watcher
         private int _currentDuration = 0;
         private string _counterName;
 
-        public SystemCharacterWatcher(int limit, int duration, string counter)
+        public SystemCharacterWatcher(SystemCharacterNode node)
         {
-            _limit = limit;
-            _limitDuration = duration;
-            _counterName = counter;
+            _limit = node.Limit;
+            _limitDuration = node.Duration;
+            _counterName = node.Name;
         }
 
         public void ExceededLimit(double value)
@@ -29,6 +29,26 @@ namespace Watcher
             {
                 MessageBox.Show($"Exceeded limit {_counterName}");
             }
+        }
+    }
+
+    [Serializable]
+    public class SystemCharacterNode
+    {
+        public double Limit { get; set; }
+
+        public int Duration { get; set; }
+
+        public string Name { get; set; }
+
+
+        public SystemCharacterNode() { }
+
+        public SystemCharacterNode(double limit, int duration, string name)
+        {
+            Limit = limit;
+            Duration = duration;
+            Name = name;
         }
     }
 }

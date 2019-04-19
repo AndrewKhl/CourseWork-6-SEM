@@ -14,10 +14,10 @@ namespace Watcher
 {
     public class MonitoringModel
     {
-        public int LoadCPU { get; set; }
-        public int LoadRAM { get; set; }
-        public int LoadNetwork { get; set; }
-        public int LoadDisk { get; set; }
+        public double LoadCPU { get; set; }
+        public double LoadRAM { get; set; }
+        public double LoadNetwork { get; set; }
+        public double LoadDisk { get; set; }
 
         public int TimeLimitCPU { get; set; }
         public int TimeLimitRAM { get; set; }
@@ -26,48 +26,26 @@ namespace Watcher
 
         public static string IpAddress { get; set; } = "";
         public static int Port { get; set; }
-        //public WatsonTcpClient Client { get; set; }
 
         public ObservableCollection<string> GoodProcess { get; set; }
         public int IndexSelectProcess { get; set; }
-        public bool? UseGoodProcesses { get; set; } = false;
-        private int defaultTimeToCheckProcess = 5;
+        public bool UseGoodProcesses { get; set; } = false;
 
         private SortedSet<string> goodProcessesSet;
         private SystemCharacterWatcher _cpuWatcher, _ramWatcher, _diskWatcher;
 
-        private static readonly string CPUSectionName = "CPU";
-        private static readonly string RAMSectionName = "RAM";
-        private static readonly string NetworkSectionName = "Network";
-        private static readonly string DiskSectionName = "Disk";
-        private static readonly string ServerSectionName = "Server";
-
-        //public static readonly string CPUMessage = "Внимание! Устройство {0} не готово. Превышен лимит CPU ({1:f})";
-        //public static readonly string ProcessMessage = "Внимание! Устройство {0} не готово. Обнаружен незарегиcтрированный процесс ({1})";
-        //public static readonly string RAMMessage = "Внимание! Устройство {0} не готово. Превышен лимит RAM ({1:f})";
-        //public static readonly string DiskMessage = "Внимание! Устройство {0} не готово. Превышен лимит записи на диск ({1:f})";
-        //public static readonly string NetworkMessage = "Внимание! Устройство {0} не готово. Превышена нагрузка сети ({1:f})";
-
         private Loader _loader;
+        private FileManager _fileManager;
+        private ConfigurationManager _configManager;
+
         private bool _runScan = false;
 
 
         public MonitoringModel()
         {
-            //if (!Directory.Exists(appdatafolder))
-            //    Directory.CreateDirectory(appdatafolder);
-
-            //if (!File.Exists(LogsPath))
-            //    File.Create(LogsPath);
-
-            //ReadConfig();
-
             _loader = new Loader();
-
-            //GoodProcess = new ObservableCollection<string>();
-            //goodProcessesSet = new SortedSet<string>();
-
-            //LoadGoodProcessesWithFile();
+            _fileManager = new FileManager();
+            _configManager = new ConfigurationManager(this, _fileManager.ConfigurationFile);
         }
 
         private async void Scanning(object obj)
@@ -86,9 +64,11 @@ namespace Watcher
 
         public void StartScanning()
         {
-            _cpuWatcher = new SystemCharacterWatcher(LoadCPU, TimeLimitCPU, CPUSectionName);
-            _ramWatcher = new SystemCharacterWatcher(LoadRAM, TimeLimitRAM, RAMSectionName);
-            _diskWatcher = new SystemCharacterWatcher(LoadDisk, TimeLimitDisk, DiskSectionName);
+            _configManager.UploadSettingsCounter();
+
+            _cpuWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.CPUSectionName]);
+            _ramWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.RAMSectionName]);
+            _diskWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.DiskSectionName]);
             _runScan = true;
 
             ThreadPool.QueueUserWorkItem(Scanning);
