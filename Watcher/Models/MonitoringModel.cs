@@ -34,9 +34,8 @@ namespace Watcher
         private int defaultTimeToCheckProcess = 5;
 
         private SortedSet<string> goodProcessesSet;
-        SystemCharacterWatcher _cpuWatcher, _ramWatcher, _diskWatcher;
+        private SystemCharacterWatcher _cpuWatcher, _ramWatcher, _diskWatcher;
 
-        //private static readonly string LastValuesSectionName = "LastValues";
         private static readonly string CPUSectionName = "CPU";
         private static readonly string RAMSectionName = "RAM";
         private static readonly string NetworkSectionName = "Network";
