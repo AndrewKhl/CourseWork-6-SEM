@@ -27,6 +27,7 @@ namespace Watcher
 
             if (_currentDuration > _limitDuration)
             {
+                _currentDuration = 0;
                 MessageBox.Show($"Exceeded limit {_counterName}");
             }
         }
