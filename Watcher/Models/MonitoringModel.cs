@@ -24,8 +24,8 @@ namespace Watcher
         public int TimeLimitNetwork { get; set; }
         public int TimeLimitDisk { get; set; }
 
-        public static string IpAddress { get; set; } = "";
-        public static int Port { get; set; }
+        public string IpAddress { get; set; } = "";
+        public int Port { get; set; }
 
         public ObservableCollection<string> GoodProcess { get; set; }
         public int IndexSelectProcess { get; set; }
