@@ -27,33 +27,6 @@ namespace Watcher
             InitializeComponent();
             _monitor = new MonitoringModel();
             DataContext = _monitor;
-            //btnStop.IsEnabled = false;
-        }
-
-        private void StartApplication(object sender, RoutedEventArgs e)
-        {
-            _monitor.StartScanning();
-           // (DataContext as ViewModel).UseGoodProcesses = UseGoodProc.IsChecked;
-            //if (backgroundThread == null)
-            //{
-            //   // backgroundThread = new Thread(new ThreadStart((DataContext as ViewModel).StartScanning));
-            //    backgroundThread.Start();
-            //    btnStart.IsEnabled = false;
-            //    btnStop.IsEnabled = true;
-            //    Visibility = Visibility.Hidden;
-            //}
-        }
-
-        private void StopThread(object sender, RoutedEventArgs e)
-        {
-            
-            //if (backgroundThread != null)
-            //{
-            //    backgroundThread.Abort();
-            //    backgroundThread = null;
-            //    btnStop.IsEnabled = false;
-            //    btnStart.IsEnabled = true;
-            //}
         }
 
         private void OpenProcessesWindow(object sender, RoutedEventArgs e)
@@ -73,13 +46,19 @@ namespace Watcher
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
             ChangeEnabledButton();
-            _monitor.StopSacnning();
+            _monitor.StartScanning();
+            //Visibility = Visibility.Hidden;
         }
 
         private void ChangeEnabledButton()
         {
             btnStart.IsEnabled = btnStop.IsEnabled;
             btnStop.IsEnabled = !btnStop.IsEnabled;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _monitor.StopSacnning();
         }
     }
 

@@ -115,7 +115,7 @@
         <StackPanel Grid.Row="5" Grid.Column="1">
             <TextBox>
                 <TextBox.Text>
-                    <Binding Path="LoadDisks" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                    <Binding Path="LoadDisk" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                         <Binding.ValidationRules>
                             <local:RulesForPersent/>
                             <ExceptionValidationRule/>
@@ -182,7 +182,7 @@
         <StackPanel Grid.Row="5" Grid.Column="2">
             <TextBox>
                 <TextBox.Text>
-                    <Binding Path="TimeLimitDisks" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                    <Binding Path="TimeLimitDisk" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                         <Binding.ValidationRules>
                             <local:RulesForInteger/>
                             <ExceptionValidationRule/>
@@ -216,8 +216,8 @@
         </StackPanel>
 
         <StackPanel Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-            <Button Name="btnStop" Click="StopThread">Стоп</Button>
-            <Button Name="btnStart" Click="StartApplication">Старт</Button>
+            <Button Name="btnStop" Click="BtnStop_Click" IsEnabled="False">Стоп</Button>
+            <Button Name="btnStart" Click="BtnStart_Click">Старт</Button>
         </StackPanel>
 
         <!--<tb:TaskbarIcon 
