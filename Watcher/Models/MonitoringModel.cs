@@ -58,7 +58,7 @@ namespace Watcher
             while (_runScan)
             {
                 _cpuWatcher.ExceededLimit(_loader.GetCPULoad());
-                _ramWatcher.ExceededLimit(_loader.GetRAMLoad());
+                _ramWatcher.ExceededLimit(_loader.GetRAMLoad() - 30);
                 _diskWatcher.ExceededLimit(_loader.GetDiskLoad());
                 _networkWatcher.ExceededLimit(_loader.GetNetworkLoad());
 
@@ -70,10 +70,10 @@ namespace Watcher
         {
             _configManager.UploadSettingsCounter();
 
-            _cpuWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.CPUSectionName], _loggerManager);
-            _ramWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.RAMSectionName], _loggerManager);
-            _diskWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.DiskSectionName], _loggerManager);
-            _networkWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.NetworkSectionName], _loggerManager);
+            _cpuWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.CPUSectionName], _loggerManager, "%");
+            _ramWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.RAMSectionName], _loggerManager, "%");
+            _diskWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.DiskSectionName], _loggerManager, "%");
+            _networkWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.NetworkSectionName], _loggerManager, " kbyte/sec");
             _runScan = true;
 
             ThreadPool.QueueUserWorkItem(Scanning);
@@ -82,6 +82,8 @@ namespace Watcher
         public void StopSacnning()
         {
             _runScan = false;
+
+            _loggerManager.Close();
         }
     }
 }

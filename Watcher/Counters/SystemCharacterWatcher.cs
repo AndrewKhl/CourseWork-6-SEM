@@ -16,7 +16,7 @@ namespace Watcher
         private string _pref;
         private LoggerManager _logger;
 
-        public SystemCharacterWatcher(SystemCharacterNode node, LoggerManager logger, string pref)
+        public SystemCharacterWatcher(SystemCharacterNode node, LoggerManager logger, string pref = "")
         {
             _limit = node.Limit;
             _limitDuration = node.Duration;
@@ -33,7 +33,7 @@ namespace Watcher
             if (_currentDuration > _limitDuration)
             {
                 _currentDuration = 0;
-                _logger.LogMessage(_counterName, value, _limit, pref);
+                _logger.LogMessage(_counterName, value, _limit, _pref);
             }
         }
     }
