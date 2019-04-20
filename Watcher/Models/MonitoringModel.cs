@@ -47,8 +47,8 @@ namespace Watcher
             _fileManager = new FileManager();
             _loggerManager = new LoggerManager(_fileManager.LoggingFile);
 
-            _loader = new Loader();
-            _configManager = new ConfigurationManager(this, _fileManager.ConfigurationFile);
+            _loader = new Loader(_loggerManager);
+            _configManager = new ConfigurationManager(this, _fileManager.ConfigurationFile, _loggerManager);
         }
 
         private async void Scanning(object obj)
@@ -70,10 +70,10 @@ namespace Watcher
         {
             _configManager.UploadSettingsCounter();
 
-            _cpuWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.CPUSectionName]);
-            _ramWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.RAMSectionName]);
-            _diskWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.DiskSectionName]);
-            _networkWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.NetworkSectionName]);
+            _cpuWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.CPUSectionName], _loggerManager);
+            _ramWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.RAMSectionName], _loggerManager);
+            _diskWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.DiskSectionName], _loggerManager);
+            _networkWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.NetworkSectionName], _loggerManager);
             _runScan = true;
 
             ThreadPool.QueueUserWorkItem(Scanning);

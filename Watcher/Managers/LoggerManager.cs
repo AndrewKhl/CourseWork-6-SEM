@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace Watcher
 {
-    class LoggerManager
+    public class LoggerManager
     {
         private StreamWriter _streamWriter;
 
@@ -22,9 +22,9 @@ namespace Watcher
             WriteMessageInFile("ERROR", message);
         }
 
-        public void LogMessage(string counterName, double max, double maxSize)
+        public void LogMessage(string counterName, double size, double maxSize, string pref)
         {
-            var message = $"Performance counter {counterName} has exceeded the maximum allowed value {max} ({maxSize})";
+            var message = $"Performance counter {counterName} has exceeded the maximum allowed value {size:F3}{pref} ({maxSize}{pref})";
             WriteMessageInFile("INFO", message);
 
             MessageBox.Show(message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);

@@ -12,7 +12,7 @@ namespace Watcher
     {
         private MonitoringModel _model;
         private XmlSerializer _serializer;
-        private LoggerManager loggerManager;
+        private LoggerManager _logger;
         private string _configurationPath;
 
         public Dictionary<string, SystemCharacterNode> SettingsCounters { get; private set; }
@@ -23,12 +23,13 @@ namespace Watcher
         public static string DiskSectionName = "Disk";
         public static string ServerSectionName => "Server";
 
-        internal ConfigurationManager(MonitoringModel model, string configPath)
+        internal ConfigurationManager(MonitoringModel model, string configPath, LoggerManager logger)
         {
             SettingsCounters = new Dictionary<string, SystemCharacterNode>();
 
             _model = model;
             _configurationPath = configPath;
+            _logger = logger;
             _serializer = new XmlSerializer(typeof(List<SystemCharacterNode>));
 
             if (FileManager.CheckFile(configPath))
@@ -69,6 +70,7 @@ namespace Watcher
             }
             catch
             {
+                _logger.LogError("The cache file was damaged, a new file will be created");
                 UploadSettingsCounter();
             }
 

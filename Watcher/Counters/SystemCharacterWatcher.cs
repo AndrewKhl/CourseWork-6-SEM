@@ -13,12 +13,17 @@ namespace Watcher
         private int _limitDuration;
         private int _currentDuration = 0;
         private string _counterName;
+        private string _pref;
+        private LoggerManager _logger;
 
-        public SystemCharacterWatcher(SystemCharacterNode node)
+        public SystemCharacterWatcher(SystemCharacterNode node, LoggerManager logger, string pref)
         {
             _limit = node.Limit;
             _limitDuration = node.Duration;
             _counterName = node.Name;
+            _pref = pref;
+
+            _logger = logger;
         }
 
         public void ExceededLimit(double value)
@@ -28,7 +33,7 @@ namespace Watcher
             if (_currentDuration > _limitDuration)
             {
                 _currentDuration = 0;
-                MessageBox.Show($"Exceeded limit {_counterName}");
+                _logger.LogMessage(_counterName, value, _limit, pref);
             }
         }
     }
