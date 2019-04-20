@@ -9,9 +9,13 @@ namespace Watcher
         private readonly PerformanceCounter _cpuCounter, _ramCounter, _diskCounter;
         private List<PerformanceCounter> _networkCounters;
 
-        internal Loader()
+        private LoggerManager _logger;
+
+        internal Loader(LoggerManager logger)
         {
             _networkCounters = new List<PerformanceCounter>();
+
+            _logger = logger;
 
             _cpuCounter = GetCounter("Processor", "% Processor Time", "_Total"); 
             _ramCounter = GetCounter("Memory", "% Committed Bytes In Use");
@@ -74,7 +78,7 @@ namespace Watcher
             }
             catch
             {
-
+                _logger.LogError($"Performance counter {category} {counterName} not exist in current machine");
             }
 
             return counter;

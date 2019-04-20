@@ -12,6 +12,7 @@ namespace Watcher
     {
         private MonitoringModel _model;
         private XmlSerializer _serializer;
+        private LoggerManager loggerManager;
         private string _configurationPath;
 
         public Dictionary<string, SystemCharacterNode> SettingsCounters { get; private set; }

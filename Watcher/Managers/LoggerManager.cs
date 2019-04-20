@@ -1,28 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Watcher
 {
     class LoggerManager
     {
-        //static void LogMessage(string messageFormat, string deviceID, string parameter, WatsonTcpClient client)
-        //{
-        //    string message = string.Format(messageFormat, deviceID, parameter);
-        //    LogMessageInFile(message);
-        //    if (client != null && IpAddress != null && IpAddress != "")
-        //        client.Send(Encoding.UTF8.GetBytes(message));
-        //    MessageBox.Show(message);
-        //}
+        private StreamWriter _streamWriter;
 
-        //private static void LogMessageInFile(string message)
-        //{
-        //    string date = DateTime.Now.ToString("dd-MMMM-yyyy HH:mm:ss ");
-        //    StreamWriter logger = new StreamWriter(LogsPath, true, Encoding.UTF8);
-        //    logger.WriteLine(date + message);
-        //    logger.Close();
-        //}
+        public LoggerManager(string logFile)
+        {
+            _streamWriter = new StreamWriter(logFile, true);
+        }
+
+        public void LogError(string message)
+        {
+            WriteMessageInFile("ERROR", message);
+        }
+
+        public void LogMessage(string counterName, double max, double maxSize)
+        {
+            var message = $"Performance counter {counterName} has exceeded the maximum allowed value {max} ({maxSize})";
+            WriteMessageInFile("INFO", message);
+
+            MessageBox.Show(message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        public void Close()
+        {
+            _streamWriter?.Dispose();
+        }
+
+        private void WriteMessageInFile(string type, string message)
+        {
+            _streamWriter.WriteLine($"{DateTime.Now.ToShortDateString()} {DateTime.Now.ToShortDateString()} {type.PadRight(10, ' ')} {Environment.MachineName.PadLeft(10, ' ')} {message}");
+        }
     }
 }

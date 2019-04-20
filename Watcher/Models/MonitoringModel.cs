@@ -37,14 +37,17 @@ namespace Watcher
         private Loader _loader;
         private FileManager _fileManager;
         private ConfigurationManager _configManager;
+        private LoggerManager _loggerManager;
 
         private bool _runScan = false;
 
 
         public MonitoringModel()
         {
-            _loader = new Loader();
             _fileManager = new FileManager();
+            _loggerManager = new LoggerManager(_fileManager.LoggingFile);
+
+            _loader = new Loader();
             _configManager = new ConfigurationManager(this, _fileManager.ConfigurationFile);
         }
 

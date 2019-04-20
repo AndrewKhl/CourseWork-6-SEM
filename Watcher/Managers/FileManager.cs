@@ -13,6 +13,7 @@ namespace Watcher
 
         public string ConfigurationFile => Path.Combine(_appDataFolder, "Config.xml");
 
+        public string LoggingFile => Path.Combine(_appDataFolder, "Log.txt");
 
         internal FileManager()
         {
