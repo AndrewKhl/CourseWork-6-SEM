@@ -43,6 +43,7 @@ namespace Watcher
             SettingsCounters.Add(CPUSectionName, new SystemCharacterNode(_model.LoadCPU, _model.TimeLimitCPU, CPUSectionName));
             SettingsCounters.Add(RAMSectionName, new SystemCharacterNode(_model.LoadRAM, _model.TimeLimitRAM, RAMSectionName));
             SettingsCounters.Add(DiskSectionName, new SystemCharacterNode(_model.LoadDisk, _model.TimeLimitDisk, DiskSectionName));
+            SettingsCounters.Add(NetworkSectionName, new SystemCharacterNode(_model.LoadNetwork, _model.TimeLimitNetwork, NetworkSectionName));
 
             SaveSettingCounter();
         }
@@ -75,14 +76,29 @@ namespace Watcher
 
         private void SetSettingsCounter()
         {
-            _model.LoadCPU = SettingsCounters[CPUSectionName].Limit;
-            _model.TimeLimitCPU = SettingsCounters[CPUSectionName].Duration;
+            if (SettingsCounters.ContainsKey(CPUSectionName))
+            {
+                _model.LoadCPU = SettingsCounters[CPUSectionName].Limit;
+                _model.TimeLimitCPU = SettingsCounters[CPUSectionName].Duration;
+            }
 
-            _model.LoadRAM = SettingsCounters[RAMSectionName].Limit;
-            _model.TimeLimitRAM = SettingsCounters[RAMSectionName].Duration;
+            if (SettingsCounters.ContainsKey(RAMSectionName))
+            {
+                _model.LoadRAM = SettingsCounters[RAMSectionName].Limit;
+                _model.TimeLimitRAM = SettingsCounters[RAMSectionName].Duration;
+            }
 
-            _model.LoadDisk = SettingsCounters[DiskSectionName].Limit;
-            _model.TimeLimitDisk = SettingsCounters[DiskSectionName].Duration;
+            if (SettingsCounters.ContainsKey(DiskSectionName))
+            {
+                _model.LoadDisk = SettingsCounters[DiskSectionName].Limit;
+                _model.TimeLimitDisk = SettingsCounters[DiskSectionName].Duration;
+            }
+
+            if (SettingsCounters.ContainsKey(NetworkSectionName))
+            {
+                _model.LoadNetwork = SettingsCounters[NetworkSectionName].Limit;
+                _model.TimeLimitNetwork = SettingsCounters[NetworkSectionName].Duration;
+            }
         }
     }
 }

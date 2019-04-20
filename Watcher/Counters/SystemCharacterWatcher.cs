@@ -33,6 +33,7 @@ namespace Watcher
         }
     }
 
+
     [Serializable]
     public class SystemCharacterNode
     {

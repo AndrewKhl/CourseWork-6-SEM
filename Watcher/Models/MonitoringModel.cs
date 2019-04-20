@@ -32,7 +32,7 @@ namespace Watcher
         public bool UseGoodProcesses { get; set; } = false;
 
         private SortedSet<string> goodProcessesSet;
-        private SystemCharacterWatcher _cpuWatcher, _ramWatcher, _diskWatcher;
+        private SystemCharacterWatcher _cpuWatcher, _ramWatcher, _diskWatcher, _networkWatcher;
 
         private Loader _loader;
         private FileManager _fileManager;
@@ -57,6 +57,7 @@ namespace Watcher
                 _cpuWatcher.ExceededLimit(_loader.GetCPULoad());
                 _ramWatcher.ExceededLimit(_loader.GetRAMLoad());
                 _diskWatcher.ExceededLimit(_loader.GetDiskLoad());
+                _networkWatcher.ExceededLimit(_loader.GetNetworkLoad());
 
                 await Task.Delay(1000 - DateTime.Now.Millisecond);
             }
@@ -69,6 +70,7 @@ namespace Watcher
             _cpuWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.CPUSectionName]);
             _ramWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.RAMSectionName]);
             _diskWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.DiskSectionName]);
+            _networkWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.NetworkSectionName]);
             _runScan = true;
 
             ThreadPool.QueueUserWorkItem(Scanning);
