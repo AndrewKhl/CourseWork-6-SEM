@@ -30,8 +30,5 @@ namespace Watcher
         {
             return File.Exists(path);
         }
-        //private static readonly string LogsPath = Path.Combine(appdatafolder, "Logs.txt");
-        //private static readonly string ProcessesFilePath = Path.Combine(appdatafolder, "GoodProcesses.txt");
-        //private static readonly string ConfigPath = Path.Combine(appdatafolder, "Config.xml");
     }
 }
