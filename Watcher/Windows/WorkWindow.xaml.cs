@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Watcher.Windows;
 
 namespace Watcher
 {
@@ -31,10 +32,10 @@ namespace Watcher
 
         private void OpenProcessesWindow(object sender, RoutedEventArgs e)
         {
-            ////WindowViewProcesses processWindow = new WindowViewProcesses(DataContext as ViewModel);
-            //processWindow.Owner = this;
+            var wnd = new ProcessWindow(_monitor.ProcessManager);
+            wnd.Owner = this;
 
-            //processWindow.Show();
+            wnd.Show();
         }
 
         private void BtnStop_Click(object sender, RoutedEventArgs e)

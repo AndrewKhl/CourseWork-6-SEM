@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Watcher
 {
-    class ProcessManager
+    public class ProcessManager : INotifyPropertyChanged
     {
         private const int DurationLastCheck = 5;
 
@@ -17,9 +19,20 @@ namespace Watcher
         private int _currentCheck = 0;
         private SortedSet<string> _goodProcess;
         private LoggerManager _logger;
-        
 
-        public ObservableCollection<string> GoodProcess => new ObservableCollection<string>(_goodProcess);
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public ObservableCollection<string> GoodProcess
+        {
+            get
+            {
+                return new ObservableCollection<string>(_goodProcess);
+            }
+            set
+            {
+
+            }
+         }
 
         public ProcessManager(string procFile, LoggerManager logger)
         {
@@ -37,6 +50,7 @@ namespace Watcher
 
             foreach (Process proc in Process.GetProcesses())
                 AddProcess(proc.ProcessName);
+
         }
 
         public void DeletedSelectProcess(string name)
@@ -87,6 +101,11 @@ namespace Watcher
                     if (!_goodProcess.Contains(proc.ProcessName))
                         _logger.LogBadProcess(proc.ProcessName);
             }
+        }
+
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

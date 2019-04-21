@@ -37,7 +37,7 @@ namespace Watcher
         private FileManager _fileManager;
         private ConfigurationManager _configManager;
         private LoggerManager _loggerManager;
-        private ProcessManager _processManager;
+        public ProcessManager ProcessManager { get; }
 
         private bool _runScan = false;
 
@@ -49,7 +49,7 @@ namespace Watcher
 
             _loader = new Loader(_loggerManager);
             _configManager = new ConfigurationManager(this, _fileManager.ConfigurationFile, _loggerManager);
-            _processManager = new ProcessManager(_fileManager.ProcessFile, _loggerManager);
+            ProcessManager = new ProcessManager(_fileManager.ProcessFile, _loggerManager);
         }
 
         private async void Scanning(object obj)
@@ -64,7 +64,7 @@ namespace Watcher
                 _networkWatcher.ExceededLimit(_loader.GetNetworkLoad());
 
                 if (UseGoodProcesses)
-                    _processManager.CheckSystemProcess();
+                    ProcessManager.CheckSystemProcess();
 
                 await Task.Delay(1000 - DateTime.Now.Millisecond);
             }

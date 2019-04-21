@@ -208,7 +208,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 -20 0 0" HorizontalAlignment="Right">
-            <CheckBox VerticalAlignment="Center" Name="UseGoodProc"></CheckBox>
+            <CheckBox VerticalAlignment="Center" IsChecked="{Binding UseGoodProcesses}"></CheckBox>
             <Label FontSize="15">Использовать только разрешённые процессы</Label>
             <Button MinHeight="40" MinWidth="150" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Normal" FontSize="15" Margin="20 0 30 0" Click="OpenProcessesWindow">
                 Добавить процесс
