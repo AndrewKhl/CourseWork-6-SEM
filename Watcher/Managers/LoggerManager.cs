@@ -17,6 +17,14 @@ namespace Watcher
             _streamWriter = new StreamWriter(logFile, true);
         }
 
+        public void LogBadProcess(string procName)
+        {
+            var message = $"Unregistered process detected {procName}";
+            WriteMessageInFile("PROCESS", message);
+
+            MessageBox.Show(message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
         public void LogError(string message)
         {
             WriteMessageInFile("ERROR", message);

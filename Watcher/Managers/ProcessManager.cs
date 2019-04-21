@@ -71,45 +71,9 @@ namespace Watcher
 
         public void CheckSystemProcess()
         {
-            foreach
+            foreach (var proc in Process.GetProcesses())
+                if (!_goodProcess.Contains(proc.ProcessName))
+                    _logger.LogBadProcess(proc.ProcessName);
         }
-
-        //private string CheckSystemProcesses()
-        //{
-        //    foreach (System.Diagnostics.Process proc in System.Diagnostics.Process.GetProcesses())
-        //    {
-        //        string res = goodProcessesSet.FirstOrDefault(p => p == proc.ProcessName);
-        //        if (res == null)
-        //            return proc.ProcessName;
-        //    }
-
-        //    return null;
-        //}
-
-        //private void FillingGoodProcessSet()
-        //{
-        //    goodProcessesSet.Clear();
-        //    foreach (string proc in GoodProcess)
-        //        goodProcessesSet.Add(proc);
-        //}
-
-        //    //goodProcessesSet.Add("backgroundTaskHost");
-
-        //    int secToProcess = defaultTimeToCheckProcess;
-
-        //if (UseGoodProcesses == true)
-        //        //{
-        //        //    string processResult = CheckSystemProcesses();
-        //        //    if (processResult != null)
-        //        //    {
-        //        //        if (secToProcess == defaultTimeToCheckProcess)
-        //        //        {
-        //        //         //   LogMessage(ProcessMessage, deviceID, processResult, Client);
-        //        //            secToProcess = 0;
-        //        //        }
-        //        //        else
-        //        //            secToProcess++;
-        //        //    }
-        //        //}
     }
 }
