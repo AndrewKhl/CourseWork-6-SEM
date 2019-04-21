@@ -15,6 +15,8 @@ namespace Watcher
 
         public string LoggingFile => Path.Combine(_appDataFolder, "Log.txt");
 
+        public string ProcessFile => Path.Combine(_appDataFolder, "Process.txt");
+
         internal FileManager()
         {
             CreateFolder(_appDataFolder);

@@ -27,7 +27,6 @@ namespace Watcher
         public string IpAddress { get; set; } = "";
         public int Port { get; set; }
 
-        public ObservableCollection<string> GoodProcess { get; set; }
         public int IndexSelectProcess { get; set; }
         public bool UseGoodProcesses { get; set; } = false;
 
@@ -38,6 +37,7 @@ namespace Watcher
         private FileManager _fileManager;
         private ConfigurationManager _configManager;
         private LoggerManager _loggerManager;
+        private ProcessManager _processManager;
 
         private bool _runScan = false;
 
@@ -49,6 +49,7 @@ namespace Watcher
 
             _loader = new Loader(_loggerManager);
             _configManager = new ConfigurationManager(this, _fileManager.ConfigurationFile, _loggerManager);
+            _processManager = new ProcessManager(_fileManager.ProcessFile, _loggerManager);
         }
 
         private async void Scanning(object obj)
@@ -61,6 +62,9 @@ namespace Watcher
                 _ramWatcher.ExceededLimit(_loader.GetRAMLoad() - 30);
                 _diskWatcher.ExceededLimit(_loader.GetDiskLoad());
                 _networkWatcher.ExceededLimit(_loader.GetNetworkLoad());
+
+                if (UseGoodProcesses)
+                    _processManager.CheckSystemProcess();
 
                 await Task.Delay(1000 - DateTime.Now.Millisecond);
             }

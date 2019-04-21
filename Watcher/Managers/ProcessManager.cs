@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -10,9 +11,15 @@ namespace Watcher
 {
     class ProcessManager
     {
+        private const int DurationLastCheck = 5;
+
         private string _processesFile;
+        private int _currentCheck = 0;
         private SortedSet<string> _goodProcess;
         private LoggerManager _logger;
+        
+
+        public ObservableCollection<string> GoodProcess => new ObservableCollection<string>(_goodProcess);
 
         public ProcessManager(string procFile, LoggerManager logger)
         {
@@ -20,6 +27,8 @@ namespace Watcher
 
             _processesFile = procFile;
             _logger = logger;
+
+            LoadGoodProcessesWithFile();
         }
 
         public void AddAllSystemProcess()
@@ -71,9 +80,13 @@ namespace Watcher
 
         public void CheckSystemProcess()
         {
-            foreach (var proc in Process.GetProcesses())
-                if (!_goodProcess.Contains(proc.ProcessName))
-                    _logger.LogBadProcess(proc.ProcessName);
+            if (++_currentCheck == DurationLastCheck)
+            {
+                _currentCheck = 0;
+                foreach (var proc in Process.GetProcesses())
+                    if (!_goodProcess.Contains(proc.ProcessName))
+                        _logger.LogBadProcess(proc.ProcessName);
+            }
         }
     }
 }
