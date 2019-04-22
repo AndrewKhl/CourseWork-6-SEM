@@ -72,6 +72,7 @@ namespace Watcher
 
         public void StartScanning()
         {
+            _loggerManager.Start();
             _configManager.UploadSettingsCounter();
 
             _cpuWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.CPUSectionName], _loggerManager, "%");

@@ -17,26 +17,17 @@ namespace Watcher
 
         private string _processesFile;
         private int _currentCheck = 0;
-        private SortedSet<string> _goodProcess;
+        //private SortedSet<string> _goodProcess;
         private LoggerManager _logger;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<string> GoodProcess
-        {
-            get
-            {
-                return new ObservableCollection<string>(_goodProcess);
-            }
-            set
-            {
-
-            }
-         }
+        public ObservableCollection<string> GoodProcess { get; set; }
 
         public ProcessManager(string procFile, LoggerManager logger)
         {
-            _goodProcess = new SortedSet<string>();
+            //_goodProcess = new SortedSet<string>();
+            GoodProcess = new ObservableCollection<string>();
 
             _processesFile = procFile;
             _logger = logger;
@@ -46,7 +37,7 @@ namespace Watcher
 
         public void AddAllSystemProcess()
         {
-            _goodProcess.Clear();
+            GoodProcess.Clear();
 
             foreach (Process proc in Process.GetProcesses())
                 AddProcess(proc.ProcessName);
@@ -55,18 +46,19 @@ namespace Watcher
 
         public void DeletedSelectProcess(string name)
         {
-            if (_goodProcess.Contains(name))
-                _goodProcess.Remove(name);
+            if (GoodProcess.Contains(name))
+                GoodProcess.Remove(name);
         }
 
         public void DeleteAllProcesses()
         {
-            _goodProcess.Clear();
+            GoodProcess.Clear();
         }
 
         public void AddProcess(string name)
         {
-            _goodProcess.Add(name);
+            if (!GoodProcess.Contains(name))
+                GoodProcess.Add(name);
         }
 
         private void LoadGoodProcessesWithFile()
@@ -84,12 +76,12 @@ namespace Watcher
             {
                 using (var sw = new StreamWriter(fs))
                 {
-                    foreach (var name in _goodProcess)
+                    foreach (var name in GoodProcess)
                         sw.WriteLine(name);
                 }
             }
 
-            File.SetAttributes(_processesFile, FileAttributes.Hidden);
+            //File.SetAttributes(_processesFile, FileAttributes.Hidden);
         }
 
         public void CheckSystemProcess()
@@ -98,7 +90,7 @@ namespace Watcher
             {
                 _currentCheck = 0;
                 foreach (var proc in Process.GetProcesses())
-                    if (!_goodProcess.Contains(proc.ProcessName))
+                    if (!GoodProcess.Contains(proc.ProcessName))
                         _logger.LogBadProcess(proc.ProcessName);
             }
         }

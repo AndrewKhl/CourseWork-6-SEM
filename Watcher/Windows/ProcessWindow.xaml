@@ -24,7 +24,7 @@
         </StackPanel>
 
         <ScrollViewer>
-            <ListBox ItemsSource="{Binding GoodProcess, Mode=TwoWay, Delay=500}" Height="380" x:Name="processList"></ListBox>
+            <ListBox ItemsSource="{Binding GoodProcess}" Height="380" x:Name="processList"></ListBox>
         </ScrollViewer>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

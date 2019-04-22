@@ -11,10 +11,16 @@ namespace Watcher
     public class LoggerManager
     {
         private StreamWriter _streamWriter;
+        private string _loggerFile;
 
         public LoggerManager(string logFile)
         {
-            _streamWriter = new StreamWriter(logFile, true);
+            _loggerFile = logFile;
+        }
+
+        public void Start()
+        {
+            _streamWriter = new StreamWriter(_loggerFile, true);
         }
 
         public void LogBadProcess(string procName)
@@ -41,11 +47,12 @@ namespace Watcher
         public void Close()
         {
             _streamWriter?.Dispose();
+            _streamWriter = null;
         }
 
         private void WriteMessageInFile(string type, string message)
         {
-            _streamWriter.WriteLine($"{DateTime.Now.ToShortDateString()} {DateTime.Now.ToShortTimeString()} {type.PadRight(10, ' ')} {Environment.MachineName.PadRight(10, ' ')} {message}");
+            _streamWriter?.WriteLine($"{DateTime.Now.ToShortDateString()} {DateTime.Now.ToShortTimeString()} {type.PadRight(10, ' ')} {Environment.MachineName.PadRight(10, ' ')} {message}");
         }
     }
 }
