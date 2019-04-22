@@ -38,7 +38,7 @@ namespace Watcher
 
         private bool SuccessfullyСonnected()
         {
-            MessageBox.Show("Server connected", "OK", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Server connected", "", MessageBoxButton.OK, MessageBoxImage.Information);
             return true;
         }
 
