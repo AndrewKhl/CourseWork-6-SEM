@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using WatsonTcp;
 
 namespace Watcher
 {
@@ -16,9 +10,9 @@ namespace Watcher
         private string _counterName;
         private string _pref;
         private LoggerManager _logger;
-        private WatsonTcpClient _client;
+        private ServerManager _client;
 
-        public SystemCharacterWatcher(SystemCharacterNode node, LoggerManager logger, string pref = "", WatsonTcpClient client = null)
+        public SystemCharacterWatcher(SystemCharacterNode node, LoggerManager logger, string pref = "", ServerManager client = null)
         {
             _limit = node.Limit;
             _limitDuration = node.Duration;
@@ -36,7 +30,7 @@ namespace Watcher
             if (_currentDuration > _limitDuration)
             {
                 _currentDuration = 0;
-                _logger.LogMessage(_counterName, value, _limit, _pref);
+                _logger.LogMessage(_counterName, value, _limit, _pref, _client);
             }
         }
     }

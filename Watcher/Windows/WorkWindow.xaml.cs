@@ -23,6 +23,7 @@ namespace Watcher
     {
         MonitoringModel _monitor;
         private int _errorCount;
+        private bool _runScanning;
 
         public WorkWindow()
         {
@@ -45,12 +46,15 @@ namespace Watcher
         {
             ChangeEnabledButton();
             _monitor.StopSacnning();
+            _runScanning = false;
         }
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
             ChangeEnabledButton();
             _monitor.StartScanning();
+
+            _runScanning = true;
             Visibility = Visibility.Hidden;
         }
 
@@ -73,7 +77,8 @@ namespace Watcher
             else
             if (validationEventArgs.Action == ValidationErrorEventAction.Removed)
                 _errorCount--;
-            btnStart.IsEnabled = _errorCount == 0;
+
+            btnStart.IsEnabled = _errorCount == 0 && !_runScanning;
         }
     }
 

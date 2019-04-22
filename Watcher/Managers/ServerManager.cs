@@ -22,9 +22,11 @@ namespace Watcher
         {
             try
             {
-                _client = new WatsonTcpClient(ip, port);
-                _client.ServerConnected = SuccessfullyСonnected;
-                _client.Debug = false;
+                _client = new WatsonTcpClient(ip, port)
+                {
+                    ServerConnected = SuccessfullyСonnected,
+                    Debug = false
+                };
                 _client.Start();
             }
             catch (Exception ex)

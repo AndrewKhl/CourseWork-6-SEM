@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Watcher", "Watcher\Watcher.csproj", "{E61238DA-1242-40F2-8455-7292D6CF8CC6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{9A1EF0AA-CB6C-4B46-81C8-4A20A8D4FB8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E61238DA-1242-40F2-8455-7292D6CF8CC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E61238DA-1242-40F2-8455-7292D6CF8CC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E61238DA-1242-40F2-8455-7292D6CF8CC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A1EF0AA-CB6C-4B46-81C8-4A20A8D4FB8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A1EF0AA-CB6C-4B46-81C8-4A20A8D4FB8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A1EF0AA-CB6C-4B46-81C8-4A20A8D4FB8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A1EF0AA-CB6C-4B46-81C8-4A20A8D4FB8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

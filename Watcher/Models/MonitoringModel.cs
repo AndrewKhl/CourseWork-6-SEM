@@ -14,20 +14,19 @@ namespace Watcher
 {
     public class MonitoringModel
     {
-        public double LoadCPU { get; set; }
-        public double LoadRAM { get; set; }
-        public double LoadNetwork { get; set; }
-        public double LoadDisk { get; set; }
+        public double LoadCPU { get; set; } = 5;
+        public double LoadRAM { get; set; } = 5;
+        public double LoadNetwork { get; set; } = 100;
+        public double LoadDisk { get; set; } = 5;
 
-        public int TimeLimitCPU { get; set; }
-        public int TimeLimitRAM { get; set; }
-        public int TimeLimitNetwork { get; set; }
-        public int TimeLimitDisk { get; set; }
+        public int TimeLimitCPU { get; set; } = 10;
+        public int TimeLimitRAM { get; set; } = 10;
+        public int TimeLimitNetwork { get; set; } = 10;
+        public int TimeLimitDisk { get; set; } = 10;
 
-        public string IpAddress { get; set; } = "";
-        public int Port { get; set; }
+        public string IpAddress { get; set; } = "127.0.0.1";
+        public int Port { get; set; } = 9000;
 
-        public int IndexSelectProcess { get; set; }
         public bool UseGoodProcesses { get; set; } = false;
 
         private SystemCharacterWatcher _cpuWatcher, _ramWatcher, _diskWatcher, _networkWatcher;
@@ -74,6 +73,7 @@ namespace Watcher
         public void StartScanning()
         {
             _loggerManager.Start();
+            _serverManager.Start(IpAddress, Port);
             _configManager.UploadSettingsCounter();
 
             _cpuWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.CPUSectionName], _loggerManager, "%", _serverManager);

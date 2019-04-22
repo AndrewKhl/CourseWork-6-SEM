@@ -50,7 +50,7 @@ namespace Watcher
 
         private void WriteMessageInFile(string type, string message)
         {
-            _streamWriter?.WriteLine($"{DateTime.Now.ToShortDateString()} {DateTime.Now.ToShortTimeString()} {type.PadRight(10, ' ')} {Environment.MachineName.PadRight(10, ' ')} {message}");
+            _streamWriter?.WriteLine($"{DateTime.Now.ToString("dd-MMMM-yyyy HH:mm:ss")} {type.PadRight(10, ' ')} {Environment.MachineName.PadRight(10, ' ')} {message}");
         }
     }
 }

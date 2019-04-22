@@ -63,8 +63,8 @@ namespace Watcher
             if (!int.TryParse(value.ToString(), out int val))
                 return new ValidationResult(false, "Incorrect symbols or lentgh grather than 9");
         
-            if (val < bottomLimit || topLimit > 100)
-                return new ValidationResult(false, $"Out of range {bottomLimit}..{topLimit}%");
+            if (val < bottomLimit || val > topLimit)
+                return new ValidationResult(false, $"Out of range {bottomLimit}..{topLimit}");
             else
                 return new ValidationResult(true, null);
         }
