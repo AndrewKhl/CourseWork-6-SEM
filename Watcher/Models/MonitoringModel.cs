@@ -37,6 +37,7 @@ namespace Watcher
         private FileManager _fileManager;
         private ConfigurationManager _configManager;
         private LoggerManager _loggerManager;
+        private ServerManager _serverManager;
         public ProcessManager ProcessManager { get; }
 
         private bool _runScan = false;
@@ -49,6 +50,7 @@ namespace Watcher
 
             _loader = new Loader(_loggerManager);
             _configManager = new ConfigurationManager(this, _fileManager.ConfigurationFile, _loggerManager);
+            _serverManager = new ServerManager(_loggerManager);
             ProcessManager = new ProcessManager(_fileManager.ProcessFile, _loggerManager);
         }
 

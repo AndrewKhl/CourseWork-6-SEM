@@ -3,38 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using WatsonTcp;
 
 namespace Watcher
 {
-    class ServerManager
+    public class ServerManager
     {
-        //public WatsonTcpClient Client { get; set; }
-        //static bool MessageReceived(byte[] data)
-        //{
-        //    MessageBox.Show("Сообщение от сервера: " + Encoding.UTF8.GetString(data));
-        //    return true;
-        //}
+        private WatsonTcpClient _client;
+        private LoggerManager _logger;
 
-        //static bool ServerConnected()
-        //{
-        //    MessageBox.Show("Сервер подключен");
-        //    return true;
-        //}
+        public ServerManager(LoggerManager logger)
+        {
+            _logger = logger;
+        }
 
-        //static bool ServerDisconnected()
-        //{
-        //    MessageBox.Show("Сервер отключен");
-        //    return true;
-        //}
+        public void Start(string ip, int port)
+        {
+            try
+            {
+                _client = new WatsonTcpClient(ip, port);
+                _client.ServerConnected = SuccessfullyСonnected;
+                _client.Debug = false;
+                _client.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Server is not available", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                _logger.LogError(ex.Message);
+            }
+        }
 
-        //    //if (IpAddress != "")
-        //    //    try
-        //    //    {
-        //    //        Client = new WatsonTcpClient(IpAddress, Port, ServerConnected, ServerDisconnected, MessageReceived, false);
-        //    //    }
-        //    //    catch (System.Net.Sockets.SocketException)
-        //    //    {
-        //    //        MessageBox.Show("Сервер недоступен. Сообщения будут записаны только локально");
-        //    //    }
+        private bool SuccessfullyСonnected()
+        {
+            MessageBox.Show("Server connected", "OK", MessageBoxButton.OK, MessageBoxImage.Information);
+            return true;
+        }
+
+        public void SendMessage(string message)
+        {
+            _client?.Send(Encoding.UTF8.GetBytes(message));
+        }
     }
 }
