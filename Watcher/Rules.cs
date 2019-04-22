@@ -5,72 +5,51 @@ using System.Windows.Controls;
 
 namespace Watcher
 {
-    //класс проверкикорректного ввода значений процентов
     public class RulesForPersent : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            int val;
-            try
-            {
-                val = int.Parse((string)value);
-            }
-            catch
-            {
-                return new ValidationResult(false, "Недопустимые символы. Или значение больше " + int.MaxValue);
-            }
+            if ((value as string)?.Trim() == string.Empty)
+                return new ValidationResult(false, "This field is required");
 
-            if (val < 0 || val > 100)
-                return new ValidationResult(false, "Выход за границы диапазона от 0 до 100 процентов");
+            if (!int.TryParse(value.ToString(),out int val))
+                return new ValidationResult(false, "Incorrect symbols or lentgh grather than 9");
+            
+            if (val < 5 || val > 100)
+                return new ValidationResult(false, "Out of range 5..100%");
             else
                 return new ValidationResult(true, null);
-
         }
     }
 
-    //проверка корректного ввода целочисленных параметров
     public class RulesForInteger : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            int val;
-            try
-            {
-                val = int.Parse((string)value);
-            }
-            catch
-            {
-                return new ValidationResult(false, "Недопустимые символы. Или значение больше " + int.MaxValue);
-            }
+            if ((value as string)?.Trim() == string.Empty)
+                return new ValidationResult(false, "This field is required");
+
+            if (!int.TryParse(value.ToString(), out int val))
+                return new ValidationResult(false, "Incorrect symbols or lentgh grather than 9");
 
             return new ValidationResult(true, null);
         }
     }
 
-    //проверка корректного ввода IP адреса
     public class RulesForIp : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            IPAddress val;
-
-            if ((string)value == "")
+            if ((value as string)?.Trim() == string.Empty)
                 return new ValidationResult(true, null);
 
-            try
-            {
-                val = IPAddress.Parse((string)value);
-            }
-            catch
-            {
-                return new ValidationResult(false, $"Недопустимое значение IP");
-            }
+            if (!IPAddress.TryParse((string)value, out IPAddress val))
+                return new ValidationResult(false, $"Incorrect IP adress");
 
             return new ValidationResult(true, null);
         }
     }
 
-    //проверка корректного ввода порта
     public class RulesForPort : ValidationRule
     {
         static readonly int bottomLimit = 1;
@@ -78,19 +57,16 @@ namespace Watcher
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            int val;
-            try
-            {
-                val = int.Parse((string)value);
-                if (val < bottomLimit || val > topLimit)
-                    throw new Exception();
-            }
-            catch
-            {
-                return new ValidationResult(false, $"Недопустимое значение порта. Диапазон [{bottomLimit}; {topLimit}]");
-            }
+            if ((value as string)?.Trim() == string.Empty)
+                return new ValidationResult(true, null);
 
-            return new ValidationResult(true, null);
+            if (!int.TryParse(value.ToString(), out int val))
+                return new ValidationResult(false, "Incorrect symbols or lentgh grather than 9");
+        
+            if (val < bottomLimit || topLimit > 100)
+                return new ValidationResult(false, $"Out of range {bottomLimit}..{topLimit}%");
+            else
+                return new ValidationResult(true, null);
         }
     }
 }
