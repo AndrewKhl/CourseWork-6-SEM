@@ -48,7 +48,7 @@ namespace Watcher
         {
             ChangeEnabledButton();
             _monitor.StartScanning();
-            //Visibility = Visibility.Hidden;
+            Visibility = Visibility.Hidden;
         }
 
         private void ChangeEnabledButton()
