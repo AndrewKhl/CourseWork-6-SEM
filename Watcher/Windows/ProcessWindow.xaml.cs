@@ -44,6 +44,11 @@ namespace Watcher.Windows
             _manager.AddProcess(ValueNewProcess.Text);
         }
 
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             _manager.SaveGoodProcessesInFile();

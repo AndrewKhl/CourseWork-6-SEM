@@ -16,7 +16,7 @@
     </Window.Resources>
 
     <StackPanel>
-        <TextBox Name="ValueNewProcess" Height="30" VerticalAlignment="Top" Margin="5 20 5 0" FontSize="18"></TextBox>
+        <TextBox Name="ValueNewProcess" Height="30" VerticalAlignment="Top" Margin="10 20 10 0" FontSize="18"></TextBox>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Click="AddNewProcess">Добавить</Button>
@@ -27,9 +27,10 @@
             <ListBox ItemsSource="{Binding GoodProcess}" Height="380" x:Name="processList"></ListBox>
         </ScrollViewer>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Click="DeleteAllProcesses" HorizontalAlignment="Right">Удалить все</Button>
-            <Button Click="DeleteProcess" HorizontalAlignment="Right">Удалить</Button>
+        <StackPanel Orientation="Horizontal">
+            <Button Click="DeleteAllProcesses">Удалить все</Button>
+            <Button Click="DeleteProcess">Удалить</Button>
+            <Button Click="CloseWindow" Margin="100 0 0 0">ОК</Button>
         </StackPanel>
 
     </StackPanel>

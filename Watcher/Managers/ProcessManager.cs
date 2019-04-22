@@ -11,15 +11,13 @@ using System.Threading.Tasks;
 
 namespace Watcher
 {
-    public class ProcessManager : INotifyPropertyChanged
+    public class ProcessManager
     {
         private const int DurationLastCheck = 5;
 
         private string _processesFile;
         private int _currentCheck = 0;
         private LoggerManager _logger;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public ObservableCollection<string> GoodProcess { get; }
 
@@ -85,14 +83,9 @@ namespace Watcher
             {
                 _currentCheck = 0;
                 foreach (var proc in Process.GetProcesses())
-                    if (!GoodProcess.Contains(proc.ProcessName))
+                    if (!GoodProcess.Contains(proc.ProcessName) && proc.ProcessName != "backgroundTaskHost")
                         _logger.LogBadProcess(proc.ProcessName);
             }
-        }
-
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }
