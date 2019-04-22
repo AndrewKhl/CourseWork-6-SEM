@@ -22,12 +22,15 @@ namespace Watcher
 	public partial class WorkWindow : Window
     {
         MonitoringModel _monitor;
+        private int _errorCount;
 
         public WorkWindow()
         {
             InitializeComponent();
             _monitor = new MonitoringModel();
             DataContext = _monitor;
+
+            AddHandler(Validation.ErrorEvent, new RoutedEventHandler(OnErrorEvent));
         }
 
         private void OpenProcessesWindow(object sender, RoutedEventArgs e)
@@ -60,6 +63,17 @@ namespace Watcher
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             _monitor.StopSacnning();
+        }
+
+        private void OnErrorEvent(object sender, RoutedEventArgs e)
+        {
+            var validationEventArgs = e as ValidationErrorEventArgs;
+            if (validationEventArgs.Action == ValidationErrorEventAction.Added)
+                _errorCount++;
+            else
+            if (validationEventArgs.Action == ValidationErrorEventAction.Removed)
+                _errorCount--;
+            btnStart.IsEnabled = _errorCount == 0;
         }
     }
 
