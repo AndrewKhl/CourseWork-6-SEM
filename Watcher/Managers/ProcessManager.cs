@@ -17,16 +17,14 @@ namespace Watcher
 
         private string _processesFile;
         private int _currentCheck = 0;
-        //private SortedSet<string> _goodProcess;
         private LoggerManager _logger;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<string> GoodProcess { get; set; }
+        public ObservableCollection<string> GoodProcess { get; }
 
         public ProcessManager(string procFile, LoggerManager logger)
         {
-            //_goodProcess = new SortedSet<string>();
             GoodProcess = new ObservableCollection<string>();
 
             _processesFile = procFile;
@@ -41,7 +39,6 @@ namespace Watcher
 
             foreach (Process proc in Process.GetProcesses())
                 AddProcess(proc.ProcessName);
-
         }
 
         public void DeletedSelectProcess(string name)
@@ -80,8 +77,6 @@ namespace Watcher
                         sw.WriteLine(name);
                 }
             }
-
-            //File.SetAttributes(_processesFile, FileAttributes.Hidden);
         }
 
         public void CheckSystemProcess()
