@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using WatsonTcp;
 
 namespace Watcher
 {
@@ -15,8 +16,9 @@ namespace Watcher
         private string _counterName;
         private string _pref;
         private LoggerManager _logger;
+        private WatsonTcpClient _client;
 
-        public SystemCharacterWatcher(SystemCharacterNode node, LoggerManager logger, string pref = "")
+        public SystemCharacterWatcher(SystemCharacterNode node, LoggerManager logger, string pref = "", WatsonTcpClient client = null)
         {
             _limit = node.Limit;
             _limitDuration = node.Duration;
@@ -24,6 +26,7 @@ namespace Watcher
             _pref = pref;
 
             _logger = logger;
+            _client = client;
         }
 
         public void ExceededLimit(double value)

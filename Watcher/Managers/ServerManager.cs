@@ -42,7 +42,7 @@ namespace Watcher
 
         public void SendMessage(string message)
         {
-            _client?.Send(Encoding.UTF8.GetBytes(message));
+            _client?.SendAsync(Encoding.UTF8.GetBytes(message));
         }
     }
 }

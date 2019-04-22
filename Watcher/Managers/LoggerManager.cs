@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Watcher
@@ -36,12 +32,14 @@ namespace Watcher
             WriteMessageInFile("ERROR", message);
         }
 
-        public void LogMessage(string counterName, double size, double maxSize, string pref)
+        public void LogMessage(string counterName, double size, double maxSize, string pref, ServerManager client = null)
         {
             var message = $"Performance counter {counterName} has exceeded the maximum allowed value {size:F3}{pref} ({maxSize}{pref})";
             WriteMessageInFile("INFO", message);
 
             MessageBox.Show(message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            client?.SendMessage(message);
         }
 
         public void Close()
