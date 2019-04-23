@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using Watcher.Models;
 using Watcher.Windows;
 
@@ -23,6 +24,7 @@ namespace Watcher
             DataContext = _monitor;
 
             AddHandler(Validation.ErrorEvent, new RoutedEventHandler(OnErrorEvent));
+            SetNewTheme("Light");
         }
 
         private void OpenProcessesWindow(object sender, RoutedEventArgs e)
@@ -70,6 +72,27 @@ namespace Watcher
                 _errorCount--;
 
             btnStart.IsEnabled = _errorCount == 0 && !_runScanning;
+        }
+
+        private void SetNewTheme(string theme)
+        {
+            try
+            {
+                var uri = new Uri($"{theme}.xaml", UriKind.Relative);
+
+                ResourceDictionary resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
+                Application.Current.Resources.Clear();
+                Application.Current.Resources.MergedDictionaries.Add(resourceDict);
+            }
+            catch
+            {
+                MessageBox.Show("Theme not found!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            SetNewTheme((sender as MenuItem).Header.ToString());
         }
     }
 

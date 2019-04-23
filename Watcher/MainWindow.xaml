@@ -18,7 +18,7 @@
         </Style>
 
         <Style x:Key="Header" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="60"/>
+            <Setter Property="FontSize" Value="50"/>
             <Setter Property="Margin" Value="0 10"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -65,7 +65,7 @@
 
     <Grid>
         <StackPanel HorizontalAlignment="Center">
-            <TextBlock Style="{StaticResource Header}">My List</TextBlock>
+            <TextBlock Style="{StaticResource Header}">Monitor Tool</TextBlock>
             <Grid Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

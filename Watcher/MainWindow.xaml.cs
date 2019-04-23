@@ -29,6 +29,9 @@ namespace Watcher
 
             _manager = new UserManager();
             DataContext = _manager;
+
+            EditBoxLogin.Text = "Admin";
+            EditBoxPassword.Password = "123456";
         }
 
         private void BtnEnter_Click(object sender, RoutedEventArgs e)
