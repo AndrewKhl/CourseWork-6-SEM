@@ -43,5 +43,21 @@ namespace Watcher
         {
             return Users.Where(u => u.Name == name && u.Password == password).FirstOrDefault();
         }
+
+        public bool HaveUser(string name)
+        {
+            return Users.Where(u => u.Name == name).Count() != 0;
+        }
+
+        public void AddUser(string name, string password)
+        {
+            Users.Add(new UserModel()
+            {
+                Name = name,
+                Password = password,
+            });
+
+            SaveChanges();
+        }
     }
 }

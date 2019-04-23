@@ -49,7 +49,7 @@ namespace Watcher
 
         private void BtnRegistr_Click(object sender, RoutedEventArgs e)
         {
-            var wnd = new RegistrationWindow(_manager);
+            var wnd = new RegistrationWindow(_manager, this);
             wnd.Owner = this;
             wnd.Show();
         }
