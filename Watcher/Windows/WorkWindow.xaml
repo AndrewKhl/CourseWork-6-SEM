@@ -75,7 +75,7 @@
         <Label Grid.Row="5" Style="{StaticResource CaptionSubThems}">Диск</Label>
         <Label Grid.Row="6" Style="{StaticResource CaptionSubThems}">Сервер</Label>
         <StackPanel Grid.Row="2" Grid.Column="1">
-            <TextBox>
+            <TextBox IsEnabled="{Binding CanEdited}">
                 <TextBox.Text>
                     <Binding Path="LoadCPU" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                         <Binding.ValidationRules>
@@ -88,7 +88,7 @@
             <Label>%</Label>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1">
-            <TextBox>
+            <TextBox IsEnabled="{Binding CanEdited}">
                 <TextBox.Text>
                     <Binding Path="LoadRAM" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                         <Binding.ValidationRules>
@@ -101,7 +101,7 @@
             <Label>%</Label>
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.Column="1">
-            <TextBox Margin="35 0 0 0">
+            <TextBox Margin="35 0 0 0" IsEnabled="{Binding CanEdited}">
                 <TextBox.Text>
                     <Binding Path="LoadNetwork" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                         <Binding.ValidationRules>
@@ -114,7 +114,7 @@
             <Label>кбит/с</Label>
         </StackPanel>
         <StackPanel Grid.Row="5" Grid.Column="1">
-            <TextBox>
+            <TextBox IsEnabled="{Binding CanEdited}">
                 <TextBox.Text>
                     <Binding Path="LoadDisk" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                         <Binding.ValidationRules>
@@ -142,7 +142,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="2">
-            <TextBox>
+            <TextBox IsEnabled="{Binding CanEdited}">
                 <TextBox.Text>
                     <Binding Path="TimeLimitCPU" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                         <Binding.ValidationRules>
@@ -155,7 +155,7 @@
             <Label>сек</Label>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="2">
-            <TextBox>
+            <TextBox IsEnabled="{Binding CanEdited}">
                 <TextBox.Text>
                     <Binding Path="TimeLimitRAM" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                         <Binding.ValidationRules>
@@ -168,7 +168,7 @@
             <Label>сек</Label>
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.Column="2">
-            <TextBox>
+            <TextBox IsEnabled="{Binding CanEdited}">
                 <TextBox.Text>
                     <Binding Path="TimeLimitNetwork" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                         <Binding.ValidationRules>
@@ -181,7 +181,7 @@
             <Label>сек</Label>
         </StackPanel>
         <StackPanel Grid.Row="5" Grid.Column="2">
-            <TextBox>
+            <TextBox IsEnabled="{Binding CanEdited}">
                 <TextBox.Text>
                     <Binding Path="TimeLimitDisk" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                         <Binding.ValidationRules>
@@ -209,9 +209,9 @@
         </StackPanel>
 
         <StackPanel Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 -20 0 0" HorizontalAlignment="Right">
-            <CheckBox VerticalAlignment="Center" IsChecked="{Binding UseGoodProcesses}"></CheckBox>
+            <CheckBox VerticalAlignment="Center" IsChecked="{Binding UseGoodProcesses}" IsEnabled="{Binding CanEdited}"></CheckBox>
             <Label FontSize="15">Использовать только разрешённые процессы</Label>
-            <Button MinHeight="40" MinWidth="150" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Normal" FontSize="15" Margin="20 0 30 0" Click="OpenProcessesWindow">
+            <Button IsEnabled="{Binding CanEdited}" MinHeight="40" MinWidth="150" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Normal" FontSize="15" Margin="20 0 30 0" Click="OpenProcessesWindow">
                 Добавить процесс
             </Button>
         </StackPanel>

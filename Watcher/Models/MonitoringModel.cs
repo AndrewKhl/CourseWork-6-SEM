@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Xml;
+using Watcher.Models;
 
 namespace Watcher
 {
@@ -29,6 +30,8 @@ namespace Watcher
 
         public bool UseGoodProcesses { get; set; } = false;
 
+        public bool CanEdited => _currentUser.IsAdmin;
+
         private SystemCharacterWatcher _cpuWatcher, _ramWatcher, _diskWatcher, _networkWatcher;
 
         private Loader _loader;
@@ -36,13 +39,20 @@ namespace Watcher
         private ConfigurationManager _configManager;
         private LoggerManager _loggerManager;
         private ServerManager _serverManager;
+        private readonly UserManager _userManager;
+
+        private UserModel _currentUser;
+
         public ProcessManager ProcessManager { get; }
 
         private bool _runScan = false;
 
 
-        public MonitoringModel()
+        public MonitoringModel(UserManager userManager, UserModel currentUser)
         {
+            _userManager = userManager;
+            _currentUser = currentUser;
+
             _fileManager = new FileManager();
             _loggerManager = new LoggerManager(_fileManager.LoggingFile);
 

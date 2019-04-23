@@ -39,7 +39,7 @@ namespace Watcher
 
             if (user != null)
             {
-                var wnd = new WorkWindow();
+                var wnd = new WorkWindow(_manager, user);
                 wnd.Show();
                 Close();
             }

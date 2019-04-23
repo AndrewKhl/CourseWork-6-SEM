@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Watcher.Models;
 using Watcher.Windows;
 
 namespace Watcher
@@ -15,10 +16,10 @@ namespace Watcher
         private int _errorCount;
         private bool _runScanning;
 
-        public WorkWindow()
+        public WorkWindow(UserManager manager, UserModel model)
         {
             InitializeComponent();
-            _monitor = new MonitoringModel();
+            _monitor = new MonitoringModel(manager, model);
             DataContext = _monitor;
 
             AddHandler(Validation.ErrorEvent, new RoutedEventHandler(OnErrorEvent));

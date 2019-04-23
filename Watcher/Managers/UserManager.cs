@@ -55,6 +55,7 @@ namespace Watcher
             {
                 Name = name,
                 Password = password,
+                IsAdmin = false,
             });
 
             SaveChanges();
