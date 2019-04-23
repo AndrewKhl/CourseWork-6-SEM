@@ -1,14 +1,14 @@
-﻿<Window x:Class="Watcher.MainWindow"
+﻿<Window x:Class="Watcher.RegistrationWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Watcher"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="RegistrationWindow"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Height="310" Width="400">
+        Height="340" Width="400">
 
     <Window.Resources>
         <Style TargetType="TextBlock">
@@ -68,7 +68,7 @@
             <TextBlock Style="{StaticResource Header}">My List</TextBlock>
             <Grid Margin="10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1.2*"/>
                     <ColumnDefinition Width="2.5*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -80,15 +80,18 @@
 
                 <TextBlock Grid.Row="0">Login</TextBlock>
                 <TextBlock Grid.Row="1">Password</TextBlock>
-
+                <TextBlock Grid.Row="2">Confirm Pass</TextBlock>
 
                 <TextBox Grid.Column="1" Grid.Row="0" x:Name="EditBoxLogin"/>
 
                 <PasswordBox Grid.Column="1" Grid.Row="1" x:Name="EditBoxPassword"/>
 
+                <PasswordBox Grid.Column="1" Grid.Row="2" x:Name="EditBoxConfirmPassword"/>
+
             </Grid>
-            <Button x:Name="btnEnter" Click="BtnEnter_Click">Enter</Button>
+            
             <Button x:Name="btnRegistr" Click="BtnRegistr_Click">Registration</Button>
+            <Button x:Name="btnBack" Click="BtnBack_Click">Back</Button>
         </StackPanel>
     </Grid>
 </Window>

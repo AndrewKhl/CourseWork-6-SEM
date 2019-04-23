@@ -76,6 +76,9 @@
     <Compile Include="Models\MonitoringModel.cs" />
     <Compile Include="Managers\ProcessManager.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Windows\RegistrationWindow.xaml.cs">
+      <DependentUpon>RegistrationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Rules.cs" />
     <Compile Include="Managers\ServerManager.cs" />
     <Compile Include="Counters\SystemCharacterWatcher.cs" />
@@ -97,6 +100,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\RegistrationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\ProcessWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

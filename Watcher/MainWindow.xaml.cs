@@ -46,5 +46,12 @@ namespace Watcher
             else
                 MessageBox.Show("Invalid login or username", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
+        private void BtnRegistr_Click(object sender, RoutedEventArgs e)
+        {
+            var wnd = new RegistrationWindow(_manager);
+            wnd.Owner = this;
+            wnd.Show();
+        }
     }
 }
