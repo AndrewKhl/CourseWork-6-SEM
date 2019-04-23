@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Watcher.Models;
 
 namespace Watcher
 {
@@ -32,9 +33,18 @@ namespace Watcher
 
         private void BtnEnter_Click(object sender, RoutedEventArgs e)
         {
-            var wnd = new WorkWindow();
-            wnd.Show();
-            Close();
+            string pass = EditBoxPassword.Password;
+
+            var user = _manager.GetUser(EditBoxLogin.Text.Trim(), pass.Trim());
+
+            if (user != null)
+            {
+                var wnd = new WorkWindow();
+                wnd.Show();
+                Close();
+            }
+            else
+                MessageBox.Show("Invalid login or username", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

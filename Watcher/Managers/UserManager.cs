@@ -10,6 +10,8 @@ namespace Watcher
 {
     public class UserManager : DbContext
     {
+        public DbSet<UserModel> Users { get; set; }
+
         public UserManager() : base("DBMonitoringTool")
         {
             if (Users.Count() == 0)
@@ -36,7 +38,10 @@ namespace Watcher
                 SaveChanges();
             }
         }
-
-        public DbSet<UserModel> Users { get; set; }
+        
+        public UserModel GetUser(string name, string password)
+        {
+            return Users.Where(u => u.Name == name && u.Password == password).FirstOrDefault();
+        }
     }
 }
