@@ -1,4 +1,4 @@
-# Windiws Watcher
+# Windows Watcher
 ### Author: Khloptsau Andrei gr.653503
 ## Description
 The load detector under Windows. Window program with installer. Peculiar watcher for the system. When the program starts, a window will appear with system parameters such as CPU, RAM, GPU, Network, etc. in it we will be able to set the limits of the load on these parameters, and the maximum allowable time of the excess load. When the program starts, it hides in the background and it becomes not visible (if you don’t know what to find). If any of the system parameters exceeds the allowed value more than the time set for it, an error message will be displayed on the screen. (can be disabled), there is also a remote mode where this message is sent to the specified local server. You can also set a list of allowed processes, when undesirable occurrences, an error is also signaled.

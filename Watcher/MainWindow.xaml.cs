@@ -20,9 +20,14 @@ namespace Watcher
     /// </summary>
     public partial class MainWindow : Window
     {
+        UserManager _manager;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            _manager = new UserManager();
+            DataContext = _manager;
         }
 
         private void BtnEnter_Click(object sender, RoutedEventArgs e)
