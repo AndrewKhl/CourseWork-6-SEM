@@ -19,10 +19,13 @@ namespace Watcher
     /// </summary>
     public partial class CurrentDataWindow : Window
     {
-        public CurrentDataWindow(ResourceDictionary theme)
+        CurrentStateLoader _loader;
+
+        public CurrentDataWindow(CurrentStateLoader loader, ResourceDictionary theme)
         {
             InitializeComponent();
 
+            _loader = loader;
             SetNewTheme(theme);
         }
 
@@ -35,6 +38,11 @@ namespace Watcher
         {
             Application.Current.Resources.Clear();
             Application.Current.Resources.MergedDictionaries.Add(theme);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _loader.StopLoader();
         }
     }
 }

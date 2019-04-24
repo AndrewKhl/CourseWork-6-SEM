@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Watcher"
         mc:Ignorable="d"
         Icon="pack://application:,,,/icons/icon.ico"
-        Title="Состояние" Height="500" Width="300"
+        Title="Состояние" Height="450" Width="300"
         Style="{DynamicResource WindowStyle}">
 
     <Grid>
@@ -19,7 +19,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="0.7*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 

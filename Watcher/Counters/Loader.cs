@@ -4,14 +4,14 @@ using System.Net.NetworkInformation;
 
 namespace Watcher
 {
-    internal class Loader
+    public class Loader
     {
         private readonly PerformanceCounter _cpuCounter, _ramCounter, _diskCounter;
         private List<PerformanceCounter> _networkCounters;
 
         private LoggerManager _logger;
 
-        internal Loader(LoggerManager logger)
+        public Loader(LoggerManager logger = null)
         {
             _networkCounters = new List<PerformanceCounter>();
 
