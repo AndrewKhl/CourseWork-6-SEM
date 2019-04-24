@@ -57,4 +57,11 @@
     <Style TargetType="ListBox">
         <Setter Property="Background" Value="LightBlue"/>
     </Style>
+
+    <Style x:Key="CaptionData" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
 </ResourceDictionary>

@@ -68,6 +68,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Windows\CurrentDataWindow.xaml.cs">
+      <DependentUpon>CurrentDataWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Managers\ConfigurationManager.cs" />
     <Compile Include="Managers\FileManager.cs" />
     <Compile Include="Counters\Loader.cs" />
@@ -88,6 +91,10 @@
     <Compile Include="Windows\WorkWindow.xaml.cs">
       <DependentUpon>WorkWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Windows\CurrentDataWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dark.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

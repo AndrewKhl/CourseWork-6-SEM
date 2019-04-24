@@ -214,6 +214,8 @@
             </Button>
         </StackPanel>
 
+        <Button Name="btnData" Click="BtnData_Click" Grid.Row="8" FontSize="15" Margin="20 0 0 10" Width="130" HorizontalAlignment="Left" Grid.ColumnSpan="2">Текущие данные</Button>
+
         <StackPanel Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Right">
             <Button Name="btnStop" Click="BtnStop_Click" IsEnabled="False" Style="{DynamicResource ButtonStyle}">Стоп</Button>
             <Button Name="btnStart" Click="BtnStart_Click" Style="{DynamicResource ButtonStyle}">Старт</Button>

@@ -96,6 +96,13 @@ namespace Watcher
         {
             SetNewTheme((sender as MenuItem).Header.ToString());
         }
+
+        private void BtnData_Click(object sender, RoutedEventArgs e)
+        {
+            var wnd = new CurrentDataWindow();
+            wnd.Owner = this;
+            wnd.Show();
+        }
     }
 
     public class ShowMessageCommand : ICommand
