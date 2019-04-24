@@ -27,6 +27,8 @@ namespace Watcher
 
             _loader = loader;
             SetNewTheme(theme);
+
+            DataContext = _loader;
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)

@@ -99,7 +99,7 @@ namespace Watcher
 
         private void BtnData_Click(object sender, RoutedEventArgs e)
         {
-            var wnd = new CurrentDataWindow(currentTheme);
+            var wnd = new CurrentDataWindow(_monitor.CreateStateLogger(), currentTheme);
             wnd.Owner = this;
             wnd.Show();
         }

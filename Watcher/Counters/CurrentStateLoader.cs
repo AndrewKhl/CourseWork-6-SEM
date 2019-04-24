@@ -42,7 +42,7 @@ namespace Watcher
             while (_loopRun)
             {
                 _currCPU = _loader.GetCPULoad();
-                _currRAM = _loader.GetRAMLoad();
+                _currRAM = Math.Max(_loader.GetRAMLoad() - 25, 0);
                 _currDisk = _loader.GetDiskLoad();
                 _currNetwork = _loader.GetNetworkLoad();
 

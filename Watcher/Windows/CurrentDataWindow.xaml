@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Icon="pack://application:,,,/icons/icon.ico"
         Title="Состояние" Height="450" Width="300"
+        Closing="Window_Closing"
         Style="{DynamicResource WindowStyle}">
 
     <Grid>
@@ -30,10 +31,10 @@
         <Label Grid.Row="3" Style="{DynamicResource CaptionSubThems}">Сеть</Label>
         <Label Grid.Row="4" Style="{DynamicResource CaptionSubThems}">Диск</Label>
 
-        <TextBlock Style="{DynamicResource CaptionData}" Grid.Row="1" Grid.Column="1" Text="3"/>
-        <TextBlock Style="{DynamicResource CaptionData}" Grid.Row="2" Grid.Column="1" Text="3"/>
-        <TextBlock Style="{DynamicResource CaptionData}" Grid.Row="3" Grid.Column="1" Text="3"/>
-        <TextBlock Style="{DynamicResource CaptionData}" Grid.Row="4" Grid.Column="1" Text="3"/>
+        <TextBlock Style="{DynamicResource CaptionData}" Grid.Row="1" Grid.Column="1" Text="{Binding CurrentCPU}"/>
+        <TextBlock Style="{DynamicResource CaptionData}" Grid.Row="2" Grid.Column="1" Text="{Binding CurrentRAM}"/>
+        <TextBlock Style="{DynamicResource CaptionData}" Grid.Row="3" Grid.Column="1" Text="{Binding CurrentNetwork}"/>
+        <TextBlock Style="{DynamicResource CaptionData}" Grid.Row="4" Grid.Column="1" Text="{Binding CurrentDisk}"/>
 
         <Button Style="{DynamicResource SubButton}" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="closeBtn" Click="CloseBtn_Click">ОК</Button>
     </Grid>

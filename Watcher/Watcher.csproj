@@ -68,6 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Counters\CurrentStateLoader.cs" />
     <Compile Include="Windows\CurrentDataWindow.xaml.cs">
       <DependentUpon>CurrentDataWindow.xaml</DependentUpon>
     </Compile>

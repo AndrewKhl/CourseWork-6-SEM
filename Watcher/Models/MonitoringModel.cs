@@ -69,7 +69,7 @@ namespace Watcher
             while (_runScan)
             {
                 _cpuWatcher.ExceededLimit(_loader.GetCPULoad());
-                _ramWatcher.ExceededLimit(_loader.GetRAMLoad() - 30);
+                _ramWatcher.ExceededLimit(_loader.GetRAMLoad() - 25);
                 _diskWatcher.ExceededLimit(_loader.GetDiskLoad());
                 _networkWatcher.ExceededLimit(_loader.GetNetworkLoad());
 
@@ -101,6 +101,11 @@ namespace Watcher
             _runScan = false;
 
             _loggerManager.Close();
+        }
+
+        public CurrentStateLoader CreateStateLogger()
+        {
+            return new CurrentStateLoader(_loader);
         }
     }
 }
