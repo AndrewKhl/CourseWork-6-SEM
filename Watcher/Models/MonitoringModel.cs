@@ -83,7 +83,8 @@ namespace Watcher
         public void StartScanning()
         {
             _loggerManager.Start();
-            _serverManager.Start(IpAddress, Port);
+            if (IpAddress.Trim() != string.Empty)
+                _serverManager.Start(IpAddress, Port);
             _configManager.UploadSettingsCounter();
 
             _cpuWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.CPUSectionName], _loggerManager, "%", _serverManager);
