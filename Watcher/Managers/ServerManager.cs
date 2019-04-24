@@ -29,10 +29,10 @@ namespace Watcher
                 };
                 _client.Start();
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("Server is not available", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                _logger.LogError(ex.Message);
+                _logger.LogError("Server is not available");
             }
         }
 

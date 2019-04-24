@@ -206,10 +206,18 @@
             </TextBox>
         </StackPanel>
 
-        <StackPanel Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 -20 0 0" HorizontalAlignment="Right">
-            <CheckBox VerticalAlignment="Center" IsChecked="{Binding UseGoodProcesses}" IsEnabled="{Binding CanEdited}"></CheckBox>
-            <Label FontSize="15">Использовать только разрешённые процессы</Label>
-            <Button IsEnabled="{Binding CanEdited}" MinHeight="40" MinWidth="150" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Normal" FontSize="15" Margin="20 0 30 0" Click="OpenProcessesWindow">
+        <StackPanel Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 0 0 0" HorizontalAlignment="Right">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding UseGoodProcesses}" IsEnabled="{Binding CanEdited}"></CheckBox>
+                    <Label FontSize="15">Использовать только разрешённые процессы</Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding ShowMessageWindows}" IsEnabled="{Binding CanEdited}"></CheckBox>
+                    <Label FontSize="15">Показывать сообщения об нарушениях</Label>
+                </StackPanel>
+            </StackPanel>
+            <Button IsEnabled="{Binding CanEdited}" MinHeight="40" MinWidth="150" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Normal" FontSize="15" Margin="20 -30 30 0" Click="OpenProcessesWindow">
                 Добавить процесс
             </Button>
         </StackPanel>

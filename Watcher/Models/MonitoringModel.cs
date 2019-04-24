@@ -29,6 +29,7 @@ namespace Watcher
         public int Port { get; set; } = 9000;
 
         public bool UseGoodProcesses { get; set; } = false;
+        public bool ShowMessageWindows { get; set; } = true;
 
         public bool CanEdited => _currentUser.IsAdmin;
 
@@ -82,9 +83,11 @@ namespace Watcher
 
         public void StartScanning()
         {
-            _loggerManager.Start();
+            _loggerManager.Start(ShowMessageWindows);
+
             if (IpAddress.Trim() != string.Empty)
                 _serverManager.Start(IpAddress, Port);
+
             _configManager.UploadSettingsCounter();
 
             _cpuWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.CPUSectionName], _loggerManager, "%", _serverManager);

@@ -9,13 +9,16 @@ namespace Watcher
         private StreamWriter _streamWriter;
         private string _loggerFile;
 
+        private bool _showMessageWindows = true;
+
         public LoggerManager(string logFile)
         {
             _loggerFile = logFile;
         }
 
-        public void Start()
+        public void Start(bool show)
         {
+            _showMessageWindows = show;
             _streamWriter = new StreamWriter(_loggerFile, true);
         }
 
@@ -24,7 +27,8 @@ namespace Watcher
             var message = $"Unregistered process detected {procName}";
             WriteMessageInFile("PROCESS", message);
 
-            MessageBox.Show(message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            if (_showMessageWindows)
+                MessageBox.Show(message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         public void LogError(string message)
@@ -37,7 +41,8 @@ namespace Watcher
             var message = $"Performance counter {counterName} has exceeded the maximum allowed value {size:F3}{pref} ({maxSize}{pref})";
             WriteMessageInFile("INFO", message);
 
-            MessageBox.Show(message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            if (_showMessageWindows)
+                MessageBox.Show(message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
 
             client?.SendMessage(message);
         }
