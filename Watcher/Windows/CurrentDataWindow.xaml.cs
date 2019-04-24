@@ -19,14 +19,22 @@ namespace Watcher
     /// </summary>
     public partial class CurrentDataWindow : Window
     {
-        public CurrentDataWindow()
+        public CurrentDataWindow(ResourceDictionary theme)
         {
             InitializeComponent();
+
+            SetNewTheme(theme);
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
+            Close();
+        }
 
+        private void SetNewTheme(ResourceDictionary theme)
+        {
+            Application.Current.Resources.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(theme);
         }
     }
 }

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Watcher"
         mc:Ignorable="d"
+        Icon="pack://application:,,,/icons/icon.ico"
         Title="RegistrationWindow"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
