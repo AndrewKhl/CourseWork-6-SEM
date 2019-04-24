@@ -50,10 +50,14 @@ namespace Watcher
             GoodProcess.Clear();
         }
 
-        public void AddProcess(string name)
+        public bool AddProcess(string name)
         {
             if (!GoodProcess.Contains(name))
+            {
                 GoodProcess.Add(name);
+                return true;
+            }
+            return false;
         }
 
         private void LoadGoodProcessesWithFile()

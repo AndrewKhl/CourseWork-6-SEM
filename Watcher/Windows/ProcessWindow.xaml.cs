@@ -21,12 +21,13 @@ namespace Watcher.Windows
     {
         private ProcessManager _manager;
 
-        public ProcessWindow(ProcessManager manager)
+        public ProcessWindow(ProcessManager manager, ResourceDictionary theme)
         {
             InitializeComponent();
             _manager = manager;
 
             DataContext = _manager;
+            SetNewTheme(theme);
         }
 
         private void LoadAllSystemProcess(object sender, RoutedEventArgs e)
@@ -41,7 +42,10 @@ namespace Watcher.Windows
 
         private void AddNewProcess(object sender, RoutedEventArgs e)
         {
-            _manager.AddProcess(ValueNewProcess.Text);
+            var newProcess = ValueNewProcess.Text;
+            var result = _manager.AddProcess(newProcess);
+            ValueNewProcess.Text = string.Empty;
+            //MessageBox("")
         }
 
         private void CloseWindow(object sender, RoutedEventArgs e)
@@ -57,6 +61,12 @@ namespace Watcher.Windows
         private void DeleteAllProcesses(object sender, RoutedEventArgs e)
         {
             _manager.DeleteAllProcesses();
+        }
+
+        private void SetNewTheme(ResourceDictionary theme)
+        {
+            Application.Current.Resources.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(theme);
         }
     }
 }

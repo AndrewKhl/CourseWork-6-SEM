@@ -45,4 +45,16 @@
         <Setter Property="HorizontalAlignment" Value="Right"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
+
+    <Style x:Key="SubButton" TargetType="Button">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="Blue"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="80"/>
+        <Setter Property="Margin" Value="10 20"/>
+    </Style>
+
+    <Style TargetType="ListBox">
+        <Setter Property="Background" Value="LightBlue"/>
+    </Style>
 </ResourceDictionary>

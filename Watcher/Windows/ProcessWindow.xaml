@@ -6,31 +6,26 @@
         xmlns:local="clr-namespace:Watcher.Windows"
         mc:Ignorable="d"
         Title="Разрешённые процессы" Height="600" Width="400"
-        Closing="Window_Closing">
+        Closing="Window_Closing"
+        Style="{DynamicResource WindowStyle}">
     <Window.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Width" Value="80"/>
-            <Setter Property="Margin" Value="10 20"/>
-        </Style>
+
     </Window.Resources>
 
     <StackPanel>
         <TextBox Name="ValueNewProcess" Height="30" VerticalAlignment="Top" Margin="10 20 10 0" FontSize="18"></TextBox>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Click="AddNewProcess">Добавить</Button>
-            <Button Click="LoadAllSystemProcess">Добавить все</Button>
+            <Button Style="{DynamicResource SubButton}" Click="AddNewProcess">Добавить</Button>
+            <Button Style="{DynamicResource SubButton}" Click="LoadAllSystemProcess">Добавить все</Button>
         </StackPanel>
 
-        <ScrollViewer>
             <ListBox ItemsSource="{Binding GoodProcess}" Height="380" x:Name="processList"></ListBox>
-        </ScrollViewer>
 
-        <StackPanel Orientation="Horizontal">
-            <Button Click="DeleteAllProcesses">Удалить все</Button>
-            <Button Click="DeleteProcess">Удалить</Button>
-            <Button Click="CloseWindow" Margin="100 0 0 0">ОК</Button>
+            <StackPanel Orientation="Horizontal">
+            <Button Style="{DynamicResource SubButton}" Click="DeleteAllProcesses">Удалить все</Button>
+            <Button Style="{DynamicResource SubButton}" Click="DeleteProcess">Удалить</Button>
+            <Button Style="{DynamicResource SubButton}" Click="CloseWindow" Margin="100 0 0 0">ОК</Button>
         </StackPanel>
 
     </StackPanel>

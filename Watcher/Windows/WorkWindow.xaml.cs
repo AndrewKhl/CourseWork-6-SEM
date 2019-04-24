@@ -17,6 +17,8 @@ namespace Watcher
         private int _errorCount;
         private bool _runScanning;
 
+        ResourceDictionary currentTheme;
+
         public WorkWindow(UserManager manager, UserModel model)
         {
             InitializeComponent();
@@ -29,7 +31,7 @@ namespace Watcher
 
         private void OpenProcessesWindow(object sender, RoutedEventArgs e)
         {
-            var wnd = new ProcessWindow(_monitor.ProcessManager);
+            var wnd = new ProcessWindow(_monitor.ProcessManager, currentTheme);
             wnd.Owner = this;
 
             wnd.Show();
@@ -80,9 +82,9 @@ namespace Watcher
             {
                 var uri = new Uri($"{theme}.xaml", UriKind.Relative);
 
-                ResourceDictionary resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
+                currentTheme = Application.LoadComponent(uri) as ResourceDictionary;
                 Application.Current.Resources.Clear();
-                Application.Current.Resources.MergedDictionaries.Add(resourceDict);
+                Application.Current.Resources.MergedDictionaries.Add(currentTheme);
             }
             catch
             {
