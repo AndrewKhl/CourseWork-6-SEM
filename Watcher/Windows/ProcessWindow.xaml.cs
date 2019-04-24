@@ -37,7 +37,14 @@ namespace Watcher.Windows
  
         private void DeleteProcess(object sender, RoutedEventArgs e)
         {
-            _manager.DeletedSelectProcess(processList.SelectedItem.ToString());
+            if (processList.SelectedItem != null)
+            {
+                var removedProc = processList.SelectedItem.ToString();
+                _manager.DeletedSelectProcess(removedProc);
+                MessageBox.Show($"Process {removedProc} successfully created!", "", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+                MessageBox.Show($"Please, select a process!", "", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void AddNewProcess(object sender, RoutedEventArgs e)
@@ -45,7 +52,10 @@ namespace Watcher.Windows
             var newProcess = ValueNewProcess.Text;
             var result = _manager.AddProcess(newProcess);
             ValueNewProcess.Text = string.Empty;
-            //MessageBox("")
+            if (result)
+                MessageBox.Show($"Process {newProcess} successfully created!", "", MessageBoxButton.OK, MessageBoxImage.Information);
+            else
+                MessageBox.Show($"Process {newProcess} alredy created!", "", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void CloseWindow(object sender, RoutedEventArgs e)
