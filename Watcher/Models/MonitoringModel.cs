@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Management;
 using System.Net;
 using System.Text;
 using System.Threading;
@@ -94,6 +95,7 @@ namespace Watcher
                 _serverManager.Start(IpAddress, Port);
 
             _configManager.UploadSettingsCounter();
+            ProcessManager.RegistredUSB();
 
             _cpuWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.CPUSectionName], _loggerManager, "%", _serverManager);
             _ramWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.RAMSectionName], _loggerManager, "%", _serverManager);

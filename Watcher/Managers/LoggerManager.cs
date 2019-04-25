@@ -31,6 +31,16 @@ namespace Watcher
                 MessageBox.Show(message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
+        public void LogUnregistredUSB(string usbName)
+        {
+            var message = $"Unregistered process detected {usbName}";
+
+            WriteMessageInFile("DEVICE", message);
+
+            if (_showMessageWindows)
+                MessageBox.Show(message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
         public void LogError(string message)
         {
             WriteMessageInFile("ERROR", message);
