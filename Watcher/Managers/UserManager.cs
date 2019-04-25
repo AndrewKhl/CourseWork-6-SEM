@@ -60,5 +60,10 @@ namespace Watcher
 
             SaveChanges();
         }
+
+        public void UpdateUser(UserModel user)
+        {
+            SaveChanges();
+        }
     }
 }

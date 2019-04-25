@@ -22,7 +22,7 @@ namespace Watcher.Models
 
         public bool UseProcess { get; set; }
 
-        public int Theme { get; set; }
+        public string Theme { get; set; }
 
         public string Lang { get; set; }
     }

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:tb="http://www.hardcodet.net/taskbar"
         xmlns:local="clr-namespace:Watcher"
+        xmlns:res="clr-namespace:Watcher.Properties"
         mc:Ignorable="d"
         Icon="pack://application:,,,/icons/icon.ico"
         Title="MonitorTool" Height="620" Width="800"
@@ -59,11 +60,11 @@
                     <MenuItem Header="Light" Click="MenuItem_Click"/>
                 </MenuItem>
                 <MenuItem Header="Language">
-                    <MenuItem Header="Rus"/>
-                    <MenuItem Header="Eng"/>
+                    <MenuItem Header="Rus" Click="MenuItem_Click_1"/>
+                    <MenuItem Header="Eng" Click="MenuItem_Click_1"/>
                 </MenuItem>
             </Menu>
-            <Label FontSize="30" Margin="0 -10 0 0">Настройки</Label> 
+            <TextBlock FontSize="30" Margin="0 -10 0 0" Text="{x:Static res:Resources.CaptionWorkWindow}"/>
         </StackPanel>
         <Label Grid.Row="1" Grid.Column="1">Загруженность</Label>
         <Label Grid.Row="1" Grid.Column="2">Длительность</Label>

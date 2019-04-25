@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -21,12 +23,14 @@ namespace Watcher
 
         public WorkWindow(UserManager manager, UserModel model)
         {
+            //Thread.CurrentThread.CurrentUICulture = new CultureInfo(Properties.Settings.Default.Language);
+
             InitializeComponent();
             _monitor = new MonitoringModel(manager, model);
             DataContext = _monitor;
 
             AddHandler(Validation.ErrorEvent, new RoutedEventHandler(OnErrorEvent));
-            SetNewTheme("Light");
+            SetNewTheme(_monitor.CurrentTheme);
         }
 
         private void OpenProcessesWindow(object sender, RoutedEventArgs e)
@@ -85,6 +89,8 @@ namespace Watcher
                 currentTheme = Application.LoadComponent(uri) as ResourceDictionary;
                 Application.Current.Resources.Clear();
                 Application.Current.Resources.MergedDictionaries.Add(currentTheme);
+
+                _monitor.CurrentTheme = theme;
             }
             catch
             {
@@ -102,6 +108,17 @@ namespace Watcher
             var wnd = new CurrentDataWindow(_monitor.CreateStateLogger(), currentTheme);
             wnd.Owner = this;
             wnd.Show();
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("eu-US");
+            InitializeComponent();
+            //ResourceDictionary dict = new ResourceDictionary();
+
+            //dict.Source = new Uri(String.Format($"Resources.eu-US.resx", UriKind.Relative);
+            //    Properties.Settings.Default.Language = "eu-US";
+            //    Properties.Settings.Default.Save();
         }
     }
 

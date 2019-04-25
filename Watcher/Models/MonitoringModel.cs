@@ -28,6 +28,7 @@ namespace Watcher
         public string IpAddress { get; set; } = "127.0.0.1";
         public int Port { get; set; } = 9000;
 
+        public string CurrentTheme { get; set; } = "Light";
         public bool UseGoodProcesses { get; set; } = false;
         public bool ShowMessageWindows { get; set; } = true;
 
@@ -61,6 +62,8 @@ namespace Watcher
             _configManager = new ConfigurationManager(this, _fileManager.ConfigurationFile, _loggerManager);
             _serverManager = new ServerManager(_loggerManager);
             ProcessManager = new ProcessManager(_fileManager.ProcessFile, _loggerManager);
+
+            SetValuesField();
         }
 
         private async void Scanning(object obj)
@@ -103,12 +106,37 @@ namespace Watcher
         {
             _runScan = false;
 
+            UpdateCurrentUser();
             _loggerManager.Close();
         }
 
         public CurrentStateLoader CreateStateLogger()
         {
             return new CurrentStateLoader(_loader);
+        }
+
+        private void UpdateCurrentUser()
+        {
+            _currentUser.IP = IpAddress;
+            _currentUser.Port = Port;
+            _currentUser.UseProcess = UseGoodProcesses;
+            _currentUser.Theme = CurrentTheme;
+
+            _userManager.UpdateUser(_currentUser);
+        }
+
+        private void SetValuesField()
+        {
+            if (!string.IsNullOrEmpty(_currentUser.IP))
+                IpAddress = _currentUser.IP;
+
+            Port = _currentUser.Port;
+            UseGoodProcesses = _currentUser.UseProcess;
+
+            if (_currentUser.Theme == null)
+                _currentUser.Theme = CurrentTheme;
+            else
+                CurrentTheme = _currentUser.Theme;
         }
     }
 }
