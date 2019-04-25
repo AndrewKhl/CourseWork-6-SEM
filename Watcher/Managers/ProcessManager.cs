@@ -102,23 +102,29 @@ namespace Watcher
         {
             _acceptUSB.Clear();
 
-            using (var mbs = new ManagementObjectSearcher("Select * From Win32_USBHub"))
+            using (var mbs = new ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive WHERE InterfaceType='USB'"))
             {
                 foreach (ManagementObject mo in mbs.Get())
-                    _acceptUSB.Add(mo["Name"].ToString());
+                {
+                    var name = mo["PNPDeviceID"].ToString();                   
+                    _acceptUSB.Add(name.Substring(name.LastIndexOf('\\') + 1));
+                }
             }
         }
 
         private void CheckUSB()
         {
-            //using (var mbs = new ManagementObjectSearcher("Select * From Win32_USBHub"))
-            //{
-            //    foreach (ManagementObject mo in mbs.Get())
-            //        if (!_acceptUSB.Contains(mo["Name"].ToString()))
-            //            _logger.LogUnregistredUSB(mo["Name"].ToString());
-            //}
+            using (var mbs = new ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive WHERE InterfaceType='USB'"))
+            {
+                foreach (ManagementObject mo in mbs.Get())
+                {
+                    var name = mo["PNPDeviceID"].ToString();
+                    name = name.Substring(name.LastIndexOf('\\') + 1);
 
-            var w = DriveInfo.GetDrives();
+                    if (!_acceptUSB.Contains(name))
+                        _logger.LogUnregistredUSB(name);
+                }
+            }
         }
     }
 }

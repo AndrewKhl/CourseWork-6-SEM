@@ -33,7 +33,7 @@ namespace Watcher
 
         public void LogUnregistredUSB(string usbName)
         {
-            var message = $"Unregistered process detected {usbName}";
+            var message = $"Unregistered device detected ID = {usbName}";
 
             WriteMessageInFile("DEVICE", message);
 
