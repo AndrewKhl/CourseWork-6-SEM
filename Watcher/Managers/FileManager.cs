@@ -11,15 +11,19 @@ namespace Watcher
     {
         private static readonly string _appDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MonitorTool");
 
-        public string ConfigurationFile => Path.Combine(_appDataFolder, "Config.xml");
+        public string ConfigurationFile => Path.Combine(_workingFolder, "Config.xml");
 
-        public string LoggingFile => Path.Combine(_appDataFolder, "Log.txt");
+        public string LoggingFile => Path.Combine(_workingFolder, "Log.txt");
 
-        public string ProcessFile => Path.Combine(_appDataFolder, "Process.txt");
+        public string ProcessFile => Path.Combine(_workingFolder, "Process.txt");
 
-        internal FileManager()
+        private string _workingFolder;
+
+        internal FileManager(string currentUser = "")
         {
-            CreateFolder(_appDataFolder);
+            _workingFolder = currentUser == "" ? _appDataFolder : Path.Combine(_appDataFolder, currentUser);
+
+            CreateFolder(_workingFolder);
         }
 
         public static void CreateFolder(string folder)

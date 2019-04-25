@@ -55,7 +55,7 @@ namespace Watcher
             _userManager = userManager;
             _currentUser = currentUser;
 
-            _fileManager = new FileManager();
+            _fileManager = new FileManager(_currentUser.Name);
             _loggerManager = new LoggerManager(_fileManager.LoggingFile);
 
             _loader = new Loader(_loggerManager);
@@ -91,8 +91,6 @@ namespace Watcher
             if (IpAddress.Trim() != string.Empty)
                 _serverManager.Start(IpAddress, Port);
 
-            _configManager.UploadSettingsCounter();
-
             _cpuWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.CPUSectionName], _loggerManager, "%", _serverManager);
             _ramWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.RAMSectionName], _loggerManager, "%", _serverManager);
             _diskWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.DiskSectionName], _loggerManager, "%", _serverManager);
@@ -105,9 +103,10 @@ namespace Watcher
         public void StopSacnning()
         {
             _runScan = false;
+            _configManager.UploadSettingsCounter();
+            _loggerManager.Close();
 
             UpdateCurrentUser();
-            _loggerManager.Close();
         }
 
         public CurrentStateLoader CreateStateLogger()

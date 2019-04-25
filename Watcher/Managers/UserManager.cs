@@ -28,6 +28,16 @@ namespace Watcher
 
                 Users.Add(new UserModel()
                 {
+                    Name = "Andrew",
+                    Password = "123456",
+                    IsAdmin = true,
+                    IP = "127.0.0.1",
+                    Port = 9000,
+
+                });
+
+                Users.Add(new UserModel()
+                {
                     Name = "Red",
                     Password = "123456",
                     IsAdmin = false,
