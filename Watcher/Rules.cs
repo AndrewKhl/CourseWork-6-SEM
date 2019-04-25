@@ -15,8 +15,25 @@ namespace Watcher
             if (!int.TryParse(value.ToString(),out int val))
                 return new ValidationResult(false, "Incorrect symbols or lentgh grather than 9");
             
-            if (val < 5 || val > 100)
-                return new ValidationResult(false, "Out of range 5..100%");
+            if (val < 1 || val > 100)
+                return new ValidationResult(false, "Out of range 1..100%");
+            else
+                return new ValidationResult(true, null);
+        }
+    }
+
+    public class RulesFromTime : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            if ((value as string)?.Trim() == string.Empty)
+                return new ValidationResult(false, "This field is required");
+
+            if (!int.TryParse(value.ToString(), out int val))
+                return new ValidationResult(false, "Incorrect symbols or lentgh grather than 9");
+
+            if (val < 5)
+                return new ValidationResult(false, "Value less than 5");
             else
                 return new ValidationResult(true, null);
         }

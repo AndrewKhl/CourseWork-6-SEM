@@ -50,6 +50,13 @@ namespace Watcher.Windows
         private void AddNewProcess(object sender, RoutedEventArgs e)
         {
             var newProcess = ValueNewProcess.Text;
+
+            if (newProcess.Trim() == string.Empty)
+            {
+                MessageBox.Show($"Please, input name process", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             var result = _manager.AddProcess(newProcess);
             ValueNewProcess.Text = string.Empty;
             if (result)
