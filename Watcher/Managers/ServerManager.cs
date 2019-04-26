@@ -31,14 +31,14 @@ namespace Watcher
             }
             catch
             {
-                MessageBox.Show("Server is not available", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.ServerNotAvaible, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 _logger.LogError("Server is not available");
             }
         }
 
         private bool SuccessfullyСonnected()
         {
-            MessageBox.Show("Server connected", "", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(Properties.Resources.ServerConnected, "", MessageBoxButton.OK, MessageBoxImage.Information);
             return true;
         }
 

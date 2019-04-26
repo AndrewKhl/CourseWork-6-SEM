@@ -24,7 +24,7 @@ namespace Watcher
 
         public void LogBadProcess(string procName)
         {
-            var message = $"Unregistered process detected {procName}";
+            var message = Properties.Resources.UnregProcess + $" {procName}";
             WriteMessageInFile("PROCESS", message);
 
             if (_showMessageWindows)
@@ -33,7 +33,7 @@ namespace Watcher
 
         public void LogUnregistredUSB(string usbName)
         {
-            var message = $"Unregistered device detected ID = {usbName}";
+            var message = Properties.Resources.UnregDevice + $" = {usbName}";
 
             WriteMessageInFile("DEVICE", message);
 
@@ -48,7 +48,7 @@ namespace Watcher
 
         public void LogMessage(string counterName, double size, double maxSize, string pref, ServerManager client = null)
         {
-            var message = $"Performance counter {counterName} has exceeded the maximum allowed value {size:F3}{pref} ({maxSize}{pref})";
+            var message = Properties.Resources.PerformCounter + $" {counterName} " + Properties.Resources.MaxAllowed + $" {size:F3}{pref} ({maxSize}{pref})";
             WriteMessageInFile("INFO", message);
 
             if (_showMessageWindows)

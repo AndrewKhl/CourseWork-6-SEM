@@ -88,6 +88,15 @@ namespace Watcher.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на alredy created!.
+        /// </summary>
+        public static string AlredyCreated {
+            get {
+                return ResourceManager.GetString("AlredyCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Settings.
         /// </summary>
         public static string CaptionWorkWindow {
@@ -178,6 +187,24 @@ namespace Watcher.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на has exceeded the maximum allowed value.
+        /// </summary>
+        public static string MaxAllowed {
+            get {
+                return ResourceManager.GetString("MaxAllowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Please, input name process.
+        /// </summary>
+        public static string NameProcess {
+            get {
+                return ResourceManager.GetString("NameProcess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Network.
         /// </summary>
         public static string Network {
@@ -196,11 +223,29 @@ namespace Watcher.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Performance counter.
+        /// </summary>
+        public static string PerformCounter {
+            get {
+                return ResourceManager.GetString("PerformCounter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Port.
         /// </summary>
         public static string Port {
             get {
                 return ResourceManager.GetString("Port", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Process.
+        /// </summary>
+        public static string Process {
+            get {
+                return ResourceManager.GetString("Process", resourceCulture);
             }
         }
         
@@ -241,11 +286,38 @@ namespace Watcher.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Please, select a process!.
+        /// </summary>
+        public static string SelectProcess {
+            get {
+                return ResourceManager.GetString("SelectProcess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Server.
         /// </summary>
         public static string Server {
             get {
                 return ResourceManager.GetString("Server", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Server connected.
+        /// </summary>
+        public static string ServerConnected {
+            get {
+                return ResourceManager.GetString("ServerConnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Server is not avaible.
+        /// </summary>
+        public static string ServerNotAvaible {
+            get {
+                return ResourceManager.GetString("ServerNotAvaible", resourceCulture);
             }
         }
         
@@ -277,11 +349,38 @@ namespace Watcher.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на successfully created!.
+        /// </summary>
+        public static string SuccessfullyCreated {
+            get {
+                return ResourceManager.GetString("SuccessfullyCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Theme.
         /// </summary>
         public static string Theme {
             get {
                 return ResourceManager.GetString("Theme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Unregistered device detected ID.
+        /// </summary>
+        public static string UnregDevice {
+            get {
+                return ResourceManager.GetString("UnregDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Unregistered process detected.
+        /// </summary>
+        public static string UnregProcess {
+            get {
+                return ResourceManager.GetString("UnregProcess", resourceCulture);
             }
         }
         

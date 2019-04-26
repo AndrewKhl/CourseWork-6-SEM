@@ -100,7 +100,7 @@ namespace Watcher
             _cpuWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.CPUSectionName], _loggerManager, "%", _serverManager);
             _ramWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.RAMSectionName], _loggerManager, "%", _serverManager);
             _diskWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.DiskSectionName], _loggerManager, "%", _serverManager);
-            _networkWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.NetworkSectionName], _loggerManager, " kbyte/sec", _serverManager);
+            _networkWatcher = new SystemCharacterWatcher(_configManager.SettingsCounters[ConfigurationManager.NetworkSectionName], _loggerManager, Properties.Resources.Kbits, _serverManager);
             _runScan = true;
 
             ThreadPool.QueueUserWorkItem(Scanning);

@@ -44,10 +44,10 @@ namespace Watcher.Windows
             {
                 var removedProc = processList.SelectedItem.ToString();
                 _manager.DeletedSelectProcess(removedProc);
-                MessageBox.Show($"Process {removedProc} successfully created!", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Properties.Resources.Process + $" {removedProc} " + Properties.Resources.SuccessfullyCreated, "", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
-                MessageBox.Show($"Please, select a process!", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.SelectProcess, "", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void AddNewProcess(object sender, RoutedEventArgs e)
@@ -56,16 +56,16 @@ namespace Watcher.Windows
 
             if (newProcess.Trim() == string.Empty)
             {
-                MessageBox.Show($"Please, input name process", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.NameProcess, "", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             var result = _manager.AddProcess(newProcess);
             ValueNewProcess.Text = string.Empty;
             if (result)
-                MessageBox.Show($"Process {newProcess} successfully created!", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Properties.Resources.Process + $" {newProcess} " + Properties.Resources.SuccessfullyCreated, "", MessageBoxButton.OK, MessageBoxImage.Information);
             else
-                MessageBox.Show($"Process {newProcess} alredy created!", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.Process + $" {newProcess} " + Properties.Resources.AlredyCreated, "", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void CloseWindow(object sender, RoutedEventArgs e)
