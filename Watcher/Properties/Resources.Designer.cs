@@ -340,6 +340,15 @@ namespace Watcher.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на State.
+        /// </summary>
+        public static string State {
+            get {
+                return ResourceManager.GetString("State", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Stop.
         /// </summary>
         public static string Stop {

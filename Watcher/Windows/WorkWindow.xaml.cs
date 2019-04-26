@@ -102,7 +102,15 @@ namespace Watcher
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            SetNewTheme((sender as MenuItem).Header.ToString());
+            var theme = (sender as MenuItem).Header.ToString();
+
+            if (theme == "Тёмная")
+                theme = "Dark";
+            else
+            if (theme == "Светлая")
+                theme = "Light";
+
+            SetNewTheme(theme);
         }
 
         private void BtnData_Click(object sender, RoutedEventArgs e)

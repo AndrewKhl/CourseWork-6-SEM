@@ -7,7 +7,7 @@
         xmlns:res="clr-namespace:Watcher.Properties"
         mc:Ignorable="d"
         Icon="pack://application:,,,/icons/icon.ico"
-        Title="Состояние" Height="450" Width="300"
+        Title="{x:Static res:Resources.State}" Height="450" Width="300"
         Closing="Window_Closing"
         Style="{DynamicResource WindowStyle}">
 

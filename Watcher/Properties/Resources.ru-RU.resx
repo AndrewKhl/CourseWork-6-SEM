@@ -117,7 +117,121 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="AddAll" xml:space="preserve">
+    <value>Добавить все</value>
+  </data>
+  <data name="AddProcess" xml:space="preserve">
+    <value>Добавить процесс</value>
+  </data>
+  <data name="AlredyCreated" xml:space="preserve">
+    <value>уже создан!</value>
+  </data>
   <data name="CaptionWorkWindow" xml:space="preserve">
     <value>Настройки</value>
+  </data>
+  <data name="CPU" xml:space="preserve">
+    <value>Процессор</value>
+  </data>
+  <data name="CurrentData" xml:space="preserve">
+    <value>Данные</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Тёмная</value>
+  </data>
+  <data name="Disk" xml:space="preserve">
+    <value>Диск</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Длительность</value>
+  </data>
+  <data name="IPadress" xml:space="preserve">
+    <value>IP Адресс</value>
+  </data>
+  <data name="Kbits" xml:space="preserve">
+    <value>кбит/с</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Светлая</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Нагрузка</value>
+  </data>
+  <data name="MaxAllowed" xml:space="preserve">
+    <value>превысил максимальное допустимое значение</value>
+  </data>
+  <data name="NameProcess" xml:space="preserve">
+    <value>Пожалуйста, введите имени процесса</value>
+  </data>
+  <data name="Network" xml:space="preserve">
+    <value>Сеть</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>ОК</value>
+  </data>
+  <data name="PerformCounter" xml:space="preserve">
+    <value>Счётчик производительности</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Порт</value>
+  </data>
+  <data name="Process" xml:space="preserve">
+    <value>Процесс</value>
+  </data>
+  <data name="RAM" xml:space="preserve">
+    <value>ОЗУ</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="RemoveAll" xml:space="preserve">
+    <value>Удалить всё</value>
+  </data>
+  <data name="Sec" xml:space="preserve">
+    <value>сек</value>
+  </data>
+  <data name="SelectProcess" xml:space="preserve">
+    <value>Пожалуйста, выберите процесс!</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Сервер</value>
+  </data>
+  <data name="ServerConnected" xml:space="preserve">
+    <value>Сервер подключён</value>
+  </data>
+  <data name="ServerNotAvaible" xml:space="preserve">
+    <value>Сервер не доступен</value>
+  </data>
+  <data name="ShowWindows" xml:space="preserve">
+    <value>Показать окна нарушений</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Старт</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>Стоп</value>
+  </data>
+  <data name="SuccessfullyCreated" xml:space="preserve">
+    <value>успешно создан!</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Темы</value>
+  </data>
+  <data name="UnregDevice" xml:space="preserve">
+    <value>Незарегестрированный процесс обнаружен</value>
+  </data>
+  <data name="UnregProcess" xml:space="preserve">
+    <value>Незарегестрированое устройство обнаружено</value>
+  </data>
+  <data name="UseProcess" xml:space="preserve">
+    <value>Использовать только разрешённые процессы</value>
+  </data>
+  <data name="WorkWithProcess" xml:space="preserve">
+    <value>Работа с процессами</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>Состояние</value>
   </data>
 </root>
