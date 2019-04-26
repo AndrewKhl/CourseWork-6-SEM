@@ -1,27 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
+﻿using System.Globalization;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Watcher
 {
-    /// <summary>
-    /// Логика взаимодействия для CurrentDataWindow.xaml
-    /// </summary>
     public partial class CurrentDataWindow : Window
     {
-        CurrentStateLoader _loader;
+        private CurrentStateLoader _loader;
 
         public CurrentDataWindow(CurrentStateLoader loader, ResourceDictionary theme, CultureInfo lang)
         {

@@ -4,26 +4,23 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using Watcher.Models;
 using Watcher.Windows;
 
 namespace Watcher
 {
-    /// <summary>
-    /// Логика взаимодействия для WorkWindow.xaml
-    /// </summary>
 	public partial class WorkWindow : Window
     {
         MonitoringModel _monitor;
-        private int _errorCount;
-        private bool _runScanning;
-
         private ResourceDictionary _currentTheme;
         private CultureInfo _currentLang;
 
-        public bool OpenProcWnd = false;
-        public bool OpenCurrDataWnd = false;
+        private int _errorCount;
+        private bool _runScanning;
+
+        public bool OpenProcWnd { get; set; }
+        public bool OpenCurrDataWnd { get; set; }
+
 
         public WorkWindow(UserManager manager, UserModel model, CultureInfo lang)
         {

@@ -1,27 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
+﻿using System.Globalization;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Watcher.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для ProcessWindow.xaml
-    /// </summary>
     public partial class ProcessWindow : Window
     {
         private ProcessManager _manager;
+
 
         public ProcessWindow(ProcessManager manager, ResourceDictionary theme, CultureInfo lang)
         {
