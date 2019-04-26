@@ -10,24 +10,25 @@ namespace Server
     {
         private static readonly string _appDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MonitorTool", "Server");
 
-        static string serverIp = "";
-        static int serverPort = 0;
-        static WatsonTcpServer server = null;
+        private static string _serverIp = "";
+        private static int _serverPort = 0;
+        private static WatsonTcpServer _server = null;
+
 
         static void Main(string[] args)
         {
             if (!Directory.Exists(_appDataFolder))
                 Directory.CreateDirectory(_appDataFolder);
 
-            serverIp = Common.InputString("Server IP:", "127.0.0.1", false);
-            serverPort = Common.InputInteger("Server port:", 9000, true, false);
-            server = new WatsonTcpServer(serverIp, serverPort); 
+            _serverIp = Common.InputString("Server IP:", "127.0.0.1", false);
+            _serverPort = Common.InputInteger("Server port:", 9000, true, false);
+            _server = new WatsonTcpServer(_serverIp, _serverPort); 
 
-            server.ClientConnected = ClientConnected;
-            server.ClientDisconnected = ClientDisconnected;
-            server.MessageReceived = MessageReceived;
+            _server.ClientConnected = ClientConnected;
+            _server.ClientDisconnected = ClientDisconnected;
+            _server.MessageReceived = MessageReceived;
 
-            server.Start();
+            _server.Start();
 
             LogMessage("Server start");
 
@@ -66,7 +67,7 @@ namespace Server
                         break;
 
                     case "list":
-                        clients = server.ListClients();
+                        clients = _server.ListClients();
                         if (clients != null && clients.Count > 0)
                         {
                             Console.WriteLine("Clients");
@@ -84,7 +85,7 @@ namespace Server
                     case "remove":
                         Console.Write("IP:Port: ");
                         ipPort = Console.ReadLine();
-                        server.DisconnectClient(ipPort);
+                        _server.DisconnectClient(ipPort);
                         break;
 
                     default:
@@ -108,10 +109,11 @@ namespace Server
         static bool MessageReceived(string ipPort, byte[] data)
         {
             string msg = "";
+
             if (data != null && data.Length > 0)
-            {
                 msg = Encoding.UTF8.GetString(data);
-            }
+            else
+                return true;
 
             Console.WriteLine("Message received from " + ipPort + ": " + msg);
             LogMessage($"{ipPort} {msg}");

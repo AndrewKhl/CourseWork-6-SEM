@@ -191,7 +191,7 @@
 
         <StackPanel Grid.Row="6" Grid.Column="2">
             <Label Content="{x:Static res:Resources.Port}"/>
-            <TextBox>
+            <TextBox IsEnabled="{Binding CanEdited}">
                 <TextBox.Text>
                     <Binding Path="Port">
                         <Binding.ValidationRules>
