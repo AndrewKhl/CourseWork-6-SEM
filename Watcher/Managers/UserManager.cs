@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Watcher.Models;
 
 namespace Watcher
@@ -48,7 +44,7 @@ namespace Watcher
                 SaveChanges();
             }
         }
-        
+
         public UserModel GetUser(string name, string password)
         {
             return Users.Where(u => u.Name == name && u.Password == password).FirstOrDefault();

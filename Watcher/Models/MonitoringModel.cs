@@ -7,6 +7,21 @@ namespace Watcher
 {
     public class MonitoringModel
     {
+        private SystemCharacterWatcher _cpuWatcher, _ramWatcher, _diskWatcher, _networkWatcher;
+
+        private Loader _loader;
+        private FileManager _fileManager;
+        private ConfigurationManager _configManager;
+        private LoggerManager _loggerManager;
+        private ServerManager _serverManager;
+        private readonly UserManager _userManager;
+
+        private UserModel _currentUser;
+
+        public ProcessManager ProcessManager { get; }
+
+        private bool _runScan = false;
+
         public double LoadCPU { get; set; } = 5;
         public double LoadRAM { get; set; } = 5;
         public double LoadNetwork { get; set; } = 100;
@@ -28,21 +43,6 @@ namespace Watcher
 
         public bool CanEdited => _currentUser.IsAdmin;
 
-        private SystemCharacterWatcher _cpuWatcher, _ramWatcher, _diskWatcher, _networkWatcher;
-
-        private Loader _loader;
-        private FileManager _fileManager;
-        private ConfigurationManager _configManager;
-        private LoggerManager _loggerManager;
-        private ServerManager _serverManager;
-        private readonly UserManager _userManager;
-
-        private UserModel _currentUser;
-
-        public ProcessManager ProcessManager { get; }
-
-        private bool _runScan = false;
-
 
         public MonitoringModel(UserManager userManager, UserModel currentUser)
         {
@@ -58,24 +58,6 @@ namespace Watcher
             ProcessManager = new ProcessManager(_fileManager.ProcessFile, _loggerManager);
 
             SetValuesField();
-        }
-
-        private async void Scanning(object obj)
-        {
-            await Task.Delay(1000 - DateTime.Now.Millisecond);
-
-            while (_runScan)
-            {
-                _cpuWatcher.ExceededLimit(_loader.GetCPULoad());
-                _ramWatcher.ExceededLimit(_loader.GetRAMLoad() - 25);
-                _diskWatcher.ExceededLimit(_loader.GetDiskLoad());
-                _networkWatcher.ExceededLimit(_loader.GetNetworkLoad());
-
-                if (UseGoodProcesses)
-                    ProcessManager.CheckSystemProcess();
-
-                await Task.Delay(1000 - DateTime.Now.Millisecond);
-            }
         }
 
         public void StartScanning()
@@ -133,6 +115,24 @@ namespace Watcher
                 _currentUser.Theme = CurrentTheme;
             else
                 CurrentTheme = _currentUser.Theme;
+        }
+
+        private async void Scanning(object obj)
+        {
+            await Task.Delay(1000 - DateTime.Now.Millisecond);
+
+            while (_runScan)
+            {
+                _cpuWatcher.ExceededLimit(_loader.GetCPULoad());
+                _ramWatcher.ExceededLimit(_loader.GetRAMLoad() - 25);
+                _diskWatcher.ExceededLimit(_loader.GetDiskLoad());
+                _networkWatcher.ExceededLimit(_loader.GetNetworkLoad());
+
+                if (UseGoodProcesses)
+                    ProcessManager.CheckSystemProcess();
+
+                await Task.Delay(1000 - DateTime.Now.Millisecond);
+            }
         }
     }
 }

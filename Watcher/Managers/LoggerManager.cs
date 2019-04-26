@@ -8,8 +8,8 @@ namespace Watcher
     {
         private StreamWriter _streamWriter;
         private string _loggerFile;
-
         private bool _showMessageWindows = true;
+
 
         public LoggerManager(string logFile)
         {

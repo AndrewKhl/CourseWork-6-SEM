@@ -24,7 +24,7 @@ namespace Watcher
             string name = EditBoxLogin.Text.Trim();
             string pass = EditBoxPassword.Password.Trim();
             string confPass = EditBoxConfirmPassword.Password.Trim();
-            
+
             if (name == string.Empty || pass == string.Empty)
             {
                 MessageBox.Show("Please, fill the fields", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

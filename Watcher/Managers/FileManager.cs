@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Watcher
 {
@@ -17,7 +13,8 @@ namespace Watcher
 
         public string ProcessFile => Path.Combine(_workingFolder, "Process.txt");
 
-        private string _workingFolder;
+        private string _workingFolder = string.Empty;
+
 
         internal FileManager(string currentUser = "")
         {

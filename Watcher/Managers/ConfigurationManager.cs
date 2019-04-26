@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace Watcher
@@ -22,6 +19,7 @@ namespace Watcher
         public static string NetworkSectionName => "Network";
         public static string DiskSectionName = "Disk";
         public static string ServerSectionName => "Server";
+
 
         internal ConfigurationManager(MonitoringModel model, string configPath, LoggerManager logger)
         {

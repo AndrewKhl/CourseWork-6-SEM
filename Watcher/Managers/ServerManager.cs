@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using System.Windows;
 using WatsonTcp;
 
@@ -12,6 +8,7 @@ namespace Watcher
     {
         private WatsonTcpClient _client;
         private LoggerManager _logger;
+
 
         public ServerManager(LoggerManager logger)
         {
@@ -36,15 +33,15 @@ namespace Watcher
             }
         }
 
+        public void SendMessage(string message)
+        {
+            _client?.SendAsync(Encoding.UTF8.GetBytes(message));
+        }
+
         private bool SuccessfullyСonnected()
         {
             MessageBox.Show(Properties.Resources.ServerConnected, "", MessageBoxButton.OK, MessageBoxImage.Information);
             return true;
-        }
-
-        public void SendMessage(string message)
-        {
-            _client?.SendAsync(Encoding.UTF8.GetBytes(message));
         }
     }
 }

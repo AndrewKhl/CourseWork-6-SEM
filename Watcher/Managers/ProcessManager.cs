@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Management;
-using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Watcher
 {
@@ -23,6 +18,7 @@ namespace Watcher
         private SortedSet<string> _acceptUSB;
 
         public ObservableCollection<string> GoodProcess { get; }
+
 
         public ProcessManager(string procFile, LoggerManager logger)
         {
@@ -64,15 +60,6 @@ namespace Watcher
             return false;
         }
 
-        private void LoadGoodProcessesWithFile()
-        {
-            if (File.Exists(_processesFile))
-            {
-                foreach (string proc in File.ReadAllLines(_processesFile, Encoding.Default))
-                    AddProcess(proc);
-            }
-        }
-
         public void SaveGoodProcessesInFile()
         {
             using (var fs = new FileStream(_processesFile, FileMode.Create))
@@ -106,7 +93,7 @@ namespace Watcher
             {
                 foreach (ManagementObject mo in mbs.Get())
                 {
-                    var name = mo["PNPDeviceID"].ToString();                   
+                    var name = mo["PNPDeviceID"].ToString();
                     _acceptUSB.Add(name.Substring(name.LastIndexOf('\\') + 1));
                 }
             }
@@ -124,6 +111,15 @@ namespace Watcher
                     if (!_acceptUSB.Contains(name))
                         _logger.LogUnregistredUSB(name);
                 }
+            }
+        }
+
+        private void LoadGoodProcessesWithFile()
+        {
+            if (File.Exists(_processesFile))
+            {
+                foreach (string proc in File.ReadAllLines(_processesFile, Encoding.Default))
+                    AddProcess(proc);
             }
         }
     }

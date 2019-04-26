@@ -8,6 +8,7 @@ namespace Watcher
     {
         private CurrentStateLoader _loader;
 
+
         public CurrentDataWindow(CurrentStateLoader loader, ResourceDictionary theme, CultureInfo lang)
         {
             Thread.CurrentThread.CurrentUICulture = lang;

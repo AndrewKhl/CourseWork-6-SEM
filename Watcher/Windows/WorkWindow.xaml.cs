@@ -9,7 +9,7 @@ using Watcher.Windows;
 
 namespace Watcher
 {
-	public partial class WorkWindow : Window
+    public partial class WorkWindow : Window
     {
         MonitoringModel _monitor;
         private ResourceDictionary _currentTheme;

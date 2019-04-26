@@ -23,7 +23,7 @@ namespace Watcher.Windows
         {
             _manager.AddAllSystemProcess();
         }
- 
+
         private void DeleteProcess(object sender, RoutedEventArgs e)
         {
             if (processList.SelectedItem != null)
