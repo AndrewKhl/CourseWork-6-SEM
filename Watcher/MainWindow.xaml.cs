@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,7 +43,21 @@ namespace Watcher
 
             if (user != null)
             {
-                var wnd = new WorkWindow(_manager, user);
+                CultureInfo lang;
+
+                switch (SelectLang.SelectedIndex)
+                {
+                    case 0:
+                        lang = CultureInfo.GetCultureInfo("ru-RU");
+                        break;
+                    case 1:
+                        lang = CultureInfo.GetCultureInfo("eu-US");
+                        break;
+                    default:
+                        return;
+                }
+
+                var wnd = new WorkWindow(_manager, user, lang);
                 wnd.Show();
                 Close();
             }

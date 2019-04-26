@@ -19,14 +19,16 @@ namespace Watcher
         private int _errorCount;
         private bool _runScanning;
 
-        ResourceDictionary currentTheme;
+        private ResourceDictionary _currentTheme;
+        private CultureInfo _currentLang;
 
-        public WorkWindow(UserManager manager, UserModel model)
+        public WorkWindow(UserManager manager, UserModel model, CultureInfo lang)
         {
-            //Thread.CurrentThread.CurrentUICulture = new CultureInfo(Properties.Settings.Default.Language);
-
+            Thread.CurrentThread.CurrentUICulture = lang;
             InitializeComponent();
+
             _monitor = new MonitoringModel(manager, model);
+            _currentLang = lang;
             DataContext = _monitor;
 
             AddHandler(Validation.ErrorEvent, new RoutedEventHandler(OnErrorEvent));
@@ -35,7 +37,7 @@ namespace Watcher
 
         private void OpenProcessesWindow(object sender, RoutedEventArgs e)
         {
-            var wnd = new ProcessWindow(_monitor.ProcessManager, currentTheme);
+            var wnd = new ProcessWindow(_monitor.ProcessManager, _currentTheme);
             wnd.Owner = this;
 
             wnd.Show();
@@ -86,9 +88,9 @@ namespace Watcher
             {
                 var uri = new Uri($"{theme}.xaml", UriKind.Relative);
 
-                currentTheme = Application.LoadComponent(uri) as ResourceDictionary;
+                _currentTheme = Application.LoadComponent(uri) as ResourceDictionary;
                 Application.Current.Resources.Clear();
-                Application.Current.Resources.MergedDictionaries.Add(currentTheme);
+                Application.Current.Resources.MergedDictionaries.Add(_currentTheme);
 
                 _monitor.CurrentTheme = theme;
             }
@@ -105,7 +107,7 @@ namespace Watcher
 
         private void BtnData_Click(object sender, RoutedEventArgs e)
         {
-            var wnd = new CurrentDataWindow(_monitor.CreateStateLogger(), currentTheme);
+            var wnd = new CurrentDataWindow(_monitor.CreateStateLogger(), _currentTheme);
             wnd.Owner = this;
             wnd.Show();
         }
