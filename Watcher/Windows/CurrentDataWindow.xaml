@@ -4,11 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Watcher"
+        xmlns:res="clr-namespace:Watcher.Properties"
         mc:Ignorable="d"
         Icon="pack://application:,,,/icons/icon.ico"
         Title="Состояние" Height="450" Width="300"
         Closing="Window_Closing"
-        xmlns:res="clr-namespace:Watcher.Properties"
         Style="{DynamicResource WindowStyle}">
 
     <Grid>
@@ -25,12 +25,12 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Foreground="White">Текущее состояние</Label>
+        <Label Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Foreground="White" Content="{x:Static res:Resources.CurrentData}"/>
 
-        <Label Grid.Row="1" Style="{DynamicResource CaptionSubThems}">Процессор</Label>
-        <Label Grid.Row="2" Style="{DynamicResource CaptionSubThems}">ОЗУ</Label>
-        <Label Grid.Row="3" Style="{DynamicResource CaptionSubThems}">Сеть</Label>
-        <Label Grid.Row="4" Style="{DynamicResource CaptionSubThems}">Диск</Label>
+        <Label Grid.Row="1" Style="{DynamicResource CaptionSubThems}" Content="{x:Static res:Resources.CPU}"/>
+        <Label Grid.Row="2" Style="{DynamicResource CaptionSubThems}" Content="{x:Static res:Resources.RAM}"/>
+        <Label Grid.Row="3" Style="{DynamicResource CaptionSubThems}" Content="{x:Static res:Resources.Network}"/>
+        <Label Grid.Row="4" Style="{DynamicResource CaptionSubThems}" Content="{x:Static res:Resources.Disk}"/>
 
         <TextBlock Style="{DynamicResource CaptionData}" Grid.Row="1" Grid.Column="1" Text="{Binding CurrentCPU}"/>
         <TextBlock Style="{DynamicResource CaptionData}" Grid.Row="2" Grid.Column="1" Text="{Binding CurrentRAM}"/>
