@@ -55,24 +55,20 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Orientation="Vertical" HorizontalAlignment="Stretch">
             <Menu HorizontalAlignment="Stretch">
-                <MenuItem Header="Theme">
-                    <MenuItem Header="Dark" Click="MenuItem_Click"/>
-                    <MenuItem Header="Light" Click="MenuItem_Click"/>
-                </MenuItem>
-                <MenuItem Header="Language">
-                    <MenuItem Header="Rus" Click="MenuItem_Click_1"/>
-                    <MenuItem Header="Eng" Click="MenuItem_Click_1"/>
+                <MenuItem Header="{x:Static res:Resources.Theme}">
+                    <MenuItem Header="{x:Static res:Resources.Dark}" Click="MenuItem_Click"/>
+                    <MenuItem Header="{x:Static res:Resources.Light}" Click="MenuItem_Click"/>
                 </MenuItem>
             </Menu>
             <Label FontSize="30" Margin="0 -10 0 0" Content="{x:Static res:Resources.CaptionWorkWindow}"/>
         </StackPanel>
-        <Label Grid.Row="1" Grid.Column="1">Загруженность</Label>
-        <Label Grid.Row="1" Grid.Column="2">Длительность</Label>
-        <Label Grid.Row="2" Style="{DynamicResource CaptionSubThems}">Процессор</Label>
-        <Label Grid.Row="3" Style="{DynamicResource CaptionSubThems}">ОЗУ</Label>
-        <Label Grid.Row="4" Style="{DynamicResource CaptionSubThems}">Сеть</Label>
-        <Label Grid.Row="5" Style="{DynamicResource CaptionSubThems}">Диск</Label>
-        <Label Grid.Row="6" Style="{DynamicResource CaptionSubThems}">Сервер</Label>
+        <Label Grid.Row="1" Grid.Column="1" Content="{x:Static res:Resources.Loading}"/>
+        <Label Grid.Row="1" Grid.Column="2" Content="{x:Static res:Resources.Duration}"/>
+        <Label Grid.Row="2" Style="{DynamicResource CaptionSubThems}" Content="{x:Static res:Resources.CPU}"/>
+        <Label Grid.Row="3" Style="{DynamicResource CaptionSubThems}" Content="{x:Static res:Resources.RAM}"/>
+        <Label Grid.Row="4" Style="{DynamicResource CaptionSubThems}" Content="{x:Static res:Resources.Network}"/>
+        <Label Grid.Row="5" Style="{DynamicResource CaptionSubThems}" Content="{x:Static res:Resources.Disk}"/>
+        <Label Grid.Row="6" Style="{DynamicResource CaptionSubThems}" Content="{x:Static res:Resources.Server}"/>
         <StackPanel Grid.Row="2" Grid.Column="1">
             <TextBox IsEnabled="{Binding CanEdited}">
                 <TextBox.Text>
@@ -110,7 +106,7 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <Label>кбит/с</Label>
+            <Label Content="{x:Static res:Resources.Kbits}"/>
         </StackPanel>
         <StackPanel Grid.Row="5" Grid.Column="1">
             <TextBox IsEnabled="{Binding CanEdited}">
@@ -127,8 +123,8 @@
         </StackPanel>
 
         <StackPanel Grid.Row="6" Grid.Column="1">
-            <Label>IP Адрес</Label>
-            <TextBox Name="inputIP">
+            <Label Content="{x:Static res:Resources.IPadress}"/>
+            <TextBox Name="inputIP" IsEnabled="{Binding CanEdited}">
                 <TextBox.Text>
                     <Binding Path="IpAddress">
                         <Binding.ValidationRules>
@@ -151,7 +147,7 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <Label>сек</Label>
+            <Label Content="{x:Static res:Resources.Sec}"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="2">
             <TextBox IsEnabled="{Binding CanEdited}">
@@ -164,7 +160,7 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <Label>сек</Label>
+            <Label Content="{x:Static res:Resources.Sec}"/>
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.Column="2">
             <TextBox IsEnabled="{Binding CanEdited}">
@@ -177,7 +173,7 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <Label>сек</Label>
+            <Label Content="{x:Static res:Resources.Sec}"/>
         </StackPanel>
         <StackPanel Grid.Row="5" Grid.Column="2">
             <TextBox IsEnabled="{Binding CanEdited}">
@@ -190,11 +186,11 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <Label>сек</Label>
+            <Label Content="{x:Static res:Resources.Sec}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="6" Grid.Column="2">
-            <Label>Порт</Label>
+            <Label Content="{x:Static res:Resources.Port}"/>
             <TextBox>
                 <TextBox.Text>
                     <Binding Path="Port">
@@ -210,24 +206,24 @@
         <StackPanel Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 0 0 0" HorizontalAlignment="Right">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding UseGoodProcesses}" IsEnabled="{Binding CanEdited}"></CheckBox>
-                    <Label FontSize="15">Использовать только разрешённые процессы</Label>
+                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding UseGoodProcesses}" IsEnabled="{Binding CanEdited}"/>
+                    <Label FontSize="15" Content="{x:Static res:Resources.UseProcess}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding ShowMessageWindows}" IsEnabled="{Binding CanEdited}"></CheckBox>
-                    <Label FontSize="15">Показывать сообщения об нарушениях</Label>
+                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding ShowMessageWindows}" IsEnabled="{Binding CanEdited}"/>
+                    <Label FontSize="15" Content="{x:Static res:Resources.ShowWindows}"/>
                 </StackPanel>
             </StackPanel>
-            <Button IsEnabled="{Binding CanEdited}" MinHeight="40" MinWidth="150" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Normal" FontSize="15" Margin="20 -30 30 0" Click="OpenProcessesWindow">
-                Добавить процесс
-            </Button>
+            <Button IsEnabled="{Binding CanEdited}" MinHeight="40" MinWidth="150" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    FontWeight="Normal" FontSize="15" Margin="20 0 30 0" Click="OpenProcessesWindow" Content="{x:Static res:Resources.AddProcess}"/>
         </StackPanel>
 
-        <Button Name="btnData" Click="BtnData_Click" Grid.Row="8" FontSize="15" Margin="20 0 0 10" Width="130" HorizontalAlignment="Left" Grid.ColumnSpan="2">Текущие данные</Button>
+        <Button Name="btnData" Click="BtnData_Click" Grid.Row="8" Margin="20 0 0 10" Width="130" HorizontalAlignment="Left"
+                Grid.ColumnSpan="2" Content="{x:Static res:Resources.CurrentData}" FontSize="18" FontWeight="Bold"/>
 
         <StackPanel Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-            <Button Name="btnStop" Click="BtnStop_Click" IsEnabled="False" Style="{DynamicResource ButtonStyle}">Стоп</Button>
-            <Button Name="btnStart" Click="BtnStart_Click" Style="{DynamicResource ButtonStyle}">Старт</Button>
+            <Button Name="btnStop" Click="BtnStop_Click" IsEnabled="False" Style="{DynamicResource ButtonStyle}" Content="{x:Static res:Resources.Stop}"/>
+            <Button Name="btnStart" Click="BtnStart_Click" Style="{DynamicResource ButtonStyle}" Content="{x:Static res:Resources.Start}"/>
         </StackPanel>
 
         <tb:TaskbarIcon 

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,8 +23,9 @@ namespace Watcher.Windows
     {
         private ProcessManager _manager;
 
-        public ProcessWindow(ProcessManager manager, ResourceDictionary theme)
+        public ProcessWindow(ProcessManager manager, ResourceDictionary theme, CultureInfo lang)
         {
+            Thread.CurrentThread.CurrentUICulture = lang;
             InitializeComponent();
             _manager = manager;
 

@@ -18,6 +18,7 @@
         <Setter Property="Background" Value="Blue"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="FontSize" Value="14"/>
     </Style>
 
     <Style TargetType="MenuItem">

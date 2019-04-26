@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,8 +24,9 @@ namespace Watcher
         UserManager _manager;
         Window _mainWindows;
 
-        public RegistrationWindow(UserManager manager, Window window)
+        public RegistrationWindow(UserManager manager, Window window, CultureInfo lang)
         {
+            Thread.CurrentThread.CurrentUICulture = lang;
             InitializeComponent();
 
             _manager = manager;

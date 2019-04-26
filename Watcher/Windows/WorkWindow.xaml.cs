@@ -37,7 +37,7 @@ namespace Watcher
 
         private void OpenProcessesWindow(object sender, RoutedEventArgs e)
         {
-            var wnd = new ProcessWindow(_monitor.ProcessManager, _currentTheme);
+            var wnd = new ProcessWindow(_monitor.ProcessManager, _currentTheme, _currentLang);
             wnd.Owner = this;
 
             wnd.Show();
@@ -107,20 +107,9 @@ namespace Watcher
 
         private void BtnData_Click(object sender, RoutedEventArgs e)
         {
-            var wnd = new CurrentDataWindow(_monitor.CreateStateLogger(), _currentTheme);
+            var wnd = new CurrentDataWindow(_monitor.CreateStateLogger(), _currentTheme, _currentLang);
             wnd.Owner = this;
             wnd.Show();
-        }
-
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
-        {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("eu-US");
-            InitializeComponent();
-            //ResourceDictionary dict = new ResourceDictionary();
-
-            //dict.Source = new Uri(String.Format($"Resources.eu-US.resx", UriKind.Relative);
-            //    Properties.Settings.Default.Language = "eu-US";
-            //    Properties.Settings.Default.Save();
         }
     }
 

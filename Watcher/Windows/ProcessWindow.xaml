@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Watcher.Windows"
+        xmlns:res="clr-namespace:Watcher.Properties"
         mc:Ignorable="d"
         Icon="pack://application:,,,/icons/icon.ico"
-        Title="Разрешённые процессы" Height="600" Width="400"
+        Title="{x:Static res:Resources.WorkWithProcess}" Height="600" Width="400"
         Closing="Window_Closing"
         Style="{DynamicResource WindowStyle}">
     <Window.Resources>
@@ -17,16 +18,16 @@
         <TextBox Name="ValueNewProcess" Height="30" VerticalAlignment="Top" Margin="10 20 10 0" FontSize="18"></TextBox>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Style="{DynamicResource SubButton}" Click="AddNewProcess">Добавить</Button>
-            <Button Style="{DynamicResource SubButton}" Click="LoadAllSystemProcess">Добавить все</Button>
+            <Button Style="{DynamicResource SubButton}" Click="AddNewProcess" Content="{x:Static res:Resources.Add}"/>
+            <Button Style="{DynamicResource SubButton}" Click="LoadAllSystemProcess" Content="{x:Static res:Resources.AddAll}"/>
         </StackPanel>
 
             <ListBox ItemsSource="{Binding GoodProcess}" Height="380" x:Name="processList"></ListBox>
 
             <StackPanel Orientation="Horizontal">
-            <Button Style="{DynamicResource SubButton}" Click="DeleteAllProcesses">Удалить все</Button>
-            <Button Style="{DynamicResource SubButton}" Click="DeleteProcess">Удалить</Button>
-            <Button Style="{DynamicResource SubButton}" Click="CloseWindow" Margin="100 0 0 0">ОК</Button>
+            <Button Style="{DynamicResource SubButton}" Click="DeleteAllProcesses" Content="{x:Static res:Resources.RemoveAll}"/>
+            <Button Style="{DynamicResource SubButton}" Click="DeleteProcess" Content="{x:Static res:Resources.Remove}"/>
+            <Button Style="{DynamicResource SubButton}" Click="CloseWindow" Margin="100 0 0 0" Content="{x:Static res:Resources.OK}"/>
         </StackPanel>
 
     </StackPanel>

@@ -8,6 +8,7 @@
         Icon="pack://application:,,,/icons/icon.ico"
         Title="Состояние" Height="450" Width="300"
         Closing="Window_Closing"
+        xmlns:res="clr-namespace:Watcher.Properties"
         Style="{DynamicResource WindowStyle}">
 
     <Grid>

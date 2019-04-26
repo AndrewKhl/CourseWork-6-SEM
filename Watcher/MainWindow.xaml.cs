@@ -22,7 +22,8 @@ namespace Watcher
     /// </summary>
     public partial class MainWindow : Window
     {
-        UserManager _manager;
+        private UserManager _manager;
+        private CultureInfo _currLang;
 
         public MainWindow()
         {
@@ -43,21 +44,8 @@ namespace Watcher
 
             if (user != null)
             {
-                CultureInfo lang;
-
-                switch (SelectLang.SelectedIndex)
-                {
-                    case 0:
-                        lang = CultureInfo.GetCultureInfo("ru-RU");
-                        break;
-                    case 1:
-                        lang = CultureInfo.GetCultureInfo("eu-US");
-                        break;
-                    default:
-                        return;
-                }
-
-                var wnd = new WorkWindow(_manager, user, lang);
+                SetCurrentLang();
+                var wnd = new WorkWindow(_manager, user, _currLang);
                 wnd.Show();
                 Close();
             }
@@ -67,9 +55,25 @@ namespace Watcher
 
         private void BtnRegistr_Click(object sender, RoutedEventArgs e)
         {
-            var wnd = new RegistrationWindow(_manager, this);
+            SetCurrentLang();
+            var wnd = new RegistrationWindow(_manager, this, _currLang);
             wnd.Owner = this;
             wnd.Show();
+        }
+
+        private void SetCurrentLang()
+        {
+            switch (SelectLang.SelectedIndex)
+            {
+                case 0:
+                    _currLang = CultureInfo.GetCultureInfo("ru-RU");
+                    break;
+                case 1:
+                    _currLang = CultureInfo.GetCultureInfo("eu-US");
+                    break;
+                default:
+                    return;
+            }
         }
     }
 }
