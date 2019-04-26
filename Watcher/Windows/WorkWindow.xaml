@@ -62,8 +62,8 @@
             </Menu>
             <Label FontSize="30" Margin="0 -10 0 0" Content="{x:Static res:Resources.CaptionWorkWindow}"/>
         </StackPanel>
-        <Label Grid.Row="1" Grid.Column="1" Content="{x:Static res:Resources.Loading}"/>
-        <Label Grid.Row="1" Grid.Column="2" Content="{x:Static res:Resources.Duration}"/>
+        <Label Grid.Row="1" Grid.Column="1" Content="{x:Static res:Resources.Loading}" VerticalAlignment="Center"/>
+        <Label Grid.Row="1" Grid.Column="2" Content="{x:Static res:Resources.Duration}" VerticalAlignment="Center"/>
         <Label Grid.Row="2" Style="{DynamicResource CaptionSubThems}" Content="{x:Static res:Resources.CPU}"/>
         <Label Grid.Row="3" Style="{DynamicResource CaptionSubThems}" Content="{x:Static res:Resources.RAM}"/>
         <Label Grid.Row="4" Style="{DynamicResource CaptionSubThems}" Content="{x:Static res:Resources.Network}"/>

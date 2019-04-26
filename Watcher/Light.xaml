@@ -2,11 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Watcher">
     <Style x:Key="WindowStyle" TargetType="Window">
-        <Setter Property="Background" Value="LightBlue" />
+        <Setter Property="Background" Value="LightGray" />
     </Style>
 
     <Style x:Key="ButtonStyle" TargetType="Button">
-        <Setter Property="Background" Value="Blue" />
+        <Setter Property="Background" Value="Gray" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="MinWidth" Value="120"/>
         <Setter Property="Margin" Value="20 0 20 10"/>
@@ -15,20 +15,20 @@
     </Style>
 
     <Style TargetType="Menu">
-        <Setter Property="Background" Value="Blue"/>
+        <Setter Property="Background" Value="Gray"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="BorderBrush" Value="White"/>
         <Setter Property="FontSize" Value="14"/>
     </Style>
 
     <Style TargetType="MenuItem">
-        <Setter Property="Background" Value="Blue"/>
+        <Setter Property="Background" Value="Gray"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="BorderBrush" Value="White"/>
     </Style>
 
     <Style TargetType="Button">
-        <Setter Property="Background" Value="Blue"/>
+        <Setter Property="Background" Value="Gray"/>
         <Setter Property="Foreground" Value="White"/>
     </Style>
 
@@ -49,14 +49,14 @@
 
     <Style x:Key="SubButton" TargetType="Button">
         <Setter Property="Foreground" Value="White"/>
-        <Setter Property="Background" Value="Blue"/>
+        <Setter Property="Background" Value="Gray"/>
         <Setter Property="Height" Value="30"/>
         <Setter Property="Width" Value="80"/>
         <Setter Property="Margin" Value="10 20"/>
     </Style>
 
     <Style TargetType="ListBox">
-        <Setter Property="Background" Value="LightBlue"/>
+        <Setter Property="Background" Value="LightGray"/>
     </Style>
 
     <Style x:Key="CaptionData" TargetType="TextBlock">

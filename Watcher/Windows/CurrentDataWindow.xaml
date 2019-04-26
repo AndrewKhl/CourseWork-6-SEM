@@ -37,6 +37,6 @@
         <TextBlock Style="{DynamicResource CaptionData}" Grid.Row="3" Grid.Column="1" Text="{Binding CurrentNetwork}"/>
         <TextBlock Style="{DynamicResource CaptionData}" Grid.Row="4" Grid.Column="1" Text="{Binding CurrentDisk}"/>
 
-        <Button Style="{DynamicResource SubButton}" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="closeBtn" Click="CloseBtn_Click">ОК</Button>
+        <Button Style="{DynamicResource SubButton}" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="closeBtn" Margin="20 15" Click="CloseBtn_Click">ОК</Button>
     </Grid>
 </Window>
