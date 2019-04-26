@@ -48,6 +48,7 @@ namespace Watcher
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             _loader.StopLoader();
+            (Owner as WorkWindow).OpenCurrDataWnd = false;
         }
     }
 }

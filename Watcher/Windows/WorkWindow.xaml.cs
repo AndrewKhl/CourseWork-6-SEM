@@ -22,6 +22,9 @@ namespace Watcher
         private ResourceDictionary _currentTheme;
         private CultureInfo _currentLang;
 
+        public bool OpenProcWnd = false;
+        public bool OpenCurrDataWnd = false;
+
         public WorkWindow(UserManager manager, UserModel model, CultureInfo lang)
         {
             Thread.CurrentThread.CurrentUICulture = lang;
@@ -37,10 +40,13 @@ namespace Watcher
 
         private void OpenProcessesWindow(object sender, RoutedEventArgs e)
         {
-            var wnd = new ProcessWindow(_monitor.ProcessManager, _currentTheme, _currentLang);
-            wnd.Owner = this;
-
-            wnd.Show();
+            if (!OpenProcWnd)
+            {
+                OpenProcWnd = true;
+                var wnd = new ProcessWindow(_monitor.ProcessManager, _currentTheme, _currentLang);
+                wnd.Owner = this;
+                wnd.Show();
+            }
         }
 
         private void BtnStop_Click(object sender, RoutedEventArgs e)
@@ -115,9 +121,13 @@ namespace Watcher
 
         private void BtnData_Click(object sender, RoutedEventArgs e)
         {
-            var wnd = new CurrentDataWindow(_monitor.CreateStateLogger(), _currentTheme, _currentLang);
-            wnd.Owner = this;
-            wnd.Show();
+            if (!OpenCurrDataWnd)
+            {
+                OpenCurrDataWnd = true;
+                var wnd = new CurrentDataWindow(_monitor.CreateStateLogger(), _currentTheme, _currentLang);
+                wnd.Owner = this;
+                wnd.Show();
+            }
         }
     }
 

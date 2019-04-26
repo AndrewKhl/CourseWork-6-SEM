@@ -76,6 +76,7 @@ namespace Watcher.Windows
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             _manager.SaveGoodProcessesInFile();
+            (Owner as WorkWindow).OpenProcWnd = false;
         }
 
         private void DeleteAllProcesses(object sender, RoutedEventArgs e)
