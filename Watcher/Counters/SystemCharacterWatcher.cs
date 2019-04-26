@@ -4,13 +4,15 @@ namespace Watcher
 {
     public class SystemCharacterWatcher
     {
+        private LoggerManager _logger;
+        private ServerManager _client;
+
         private double _limit;
         private int _limitDuration;
         private int _currentDuration = 0;
         private string _counterName;
         private string _pref;
-        private LoggerManager _logger;
-        private ServerManager _client;
+
 
         public SystemCharacterWatcher(SystemCharacterNode node, LoggerManager logger, string pref = "", ServerManager client = null)
         {

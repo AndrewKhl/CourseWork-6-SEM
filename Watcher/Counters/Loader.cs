@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Net.NetworkInformation;
 
 namespace Watcher
 {
     public class Loader
     {
         private readonly PerformanceCounter _cpuCounter, _ramCounter, _diskCounter;
-        private List<PerformanceCounter> _networkCounters;
-
         private LoggerManager _logger;
+
+        private List<PerformanceCounter> _networkCounters;
+ 
 
         public Loader(LoggerManager logger = null)
         {

@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -17,6 +14,8 @@ namespace Watcher
         private double _currNetwork;
         private bool _loopRun = false;
         private Loader _loader;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string CurrentCPU => $"{_currCPU:F3}%";
 
@@ -33,6 +32,16 @@ namespace Watcher
             _loopRun = true;
 
             ThreadPool.QueueUserWorkItem(UpdateCounters);
+        }
+
+        public void StopLoader()
+        {
+            _loopRun = false;
+        }
+
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
         private async void UpdateCounters(object obj)
@@ -53,17 +62,6 @@ namespace Watcher
 
                 await Task.Delay(1000 - DateTime.Now.Millisecond);
             }
-        }
-
-        public void StopLoader()
-        {
-            _loopRun = false;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }
