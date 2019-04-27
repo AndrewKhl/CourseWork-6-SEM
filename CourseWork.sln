@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Watcher", "Watcher\Watcher.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{9A1EF0AA-CB6C-4B46-81C8-4A20A8D4FB8F}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MonitorToolsInstaller", "MonitorToolsInstaller\MonitorToolsInstaller.vdproj", "{87912B77-5C8C-451C-BC16-ADBA21BC8750}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,8 @@ Global
 		{9A1EF0AA-CB6C-4B46-81C8-4A20A8D4FB8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A1EF0AA-CB6C-4B46-81C8-4A20A8D4FB8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A1EF0AA-CB6C-4B46-81C8-4A20A8D4FB8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87912B77-5C8C-451C-BC16-ADBA21BC8750}.Debug|Any CPU.ActiveCfg = Debug
+		{87912B77-5C8C-451C-BC16-ADBA21BC8750}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
