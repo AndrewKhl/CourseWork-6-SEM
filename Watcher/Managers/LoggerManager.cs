@@ -22,16 +22,18 @@ namespace Watcher
             _streamWriter = new StreamWriter(_loggerFile, true);
         }
 
-        public void LogBadProcess(string procName)
+        public void LogBadProcess(string procName, ServerManager client = null)
         {
             var message = Properties.Resources.UnregProcess + $" {procName}";
             WriteMessageInFile("PROCESS", message);
 
             if (_showMessageWindows)
                 MessageBox.Show(message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            client?.SendMessage(message);
         }
 
-        public void LogUnregistredUSB(string usbName)
+        public void LogUnregistredUSB(string usbName, ServerManager client = null)
         {
             var message = Properties.Resources.UnregDevice + $" = {usbName}";
 
@@ -39,6 +41,8 @@ namespace Watcher
 
             if (_showMessageWindows)
                 MessageBox.Show(message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            client?.SendMessage(message);
         }
 
         public void LogError(string message)

@@ -129,7 +129,7 @@ namespace Watcher
                 _networkWatcher.ExceededLimit(_loader.GetNetworkLoad());
 
                 if (UseGoodProcesses)
-                    ProcessManager.CheckSystemProcess();
+                    ProcessManager.CheckSystemProcess(_serverManager);
 
                 await Task.Delay(1000 - DateTime.Now.Millisecond);
             }

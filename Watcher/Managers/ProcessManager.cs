@@ -72,16 +72,16 @@ namespace Watcher
             }
         }
 
-        public void CheckSystemProcess()
+        public void CheckSystemProcess(ServerManager client)
         {
             if (++_currentCheck == DurationLastCheck)
             {
                 _currentCheck = 0;
                 foreach (var proc in Process.GetProcesses())
                     if (!GoodProcess.Contains(proc.ProcessName) && proc.ProcessName != "backgroundTaskHost")
-                        _logger.LogBadProcess(proc.ProcessName);
+                        _logger.LogBadProcess(proc.ProcessName, client);
 
-                CheckUSB();
+                CheckUSB(client);
             }
         }
 
@@ -99,7 +99,7 @@ namespace Watcher
             }
         }
 
-        private void CheckUSB()
+        private void CheckUSB(ServerManager client)
         {
             using (var mbs = new ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive WHERE InterfaceType='USB'"))
             {
@@ -109,7 +109,7 @@ namespace Watcher
                     name = name.Substring(name.LastIndexOf('\\') + 1);
 
                     if (!_acceptUSB.Contains(name))
-                        _logger.LogUnregistredUSB(name);
+                        _logger.LogUnregistredUSB(name, client);
                 }
             }
         }
