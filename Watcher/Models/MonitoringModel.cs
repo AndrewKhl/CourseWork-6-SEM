@@ -36,7 +36,7 @@ namespace Watcher
         public int Port { get; set; } = 9000;
 
         public string CurrentTheme { get; set; } = "Light";
-        public string CurrentUser => $"Hello, {_currentUser.Name}";
+        public string CurrentUser => $"{Properties.Resources.Hello}, {_currentUser.Name}";
 
         public bool UseGoodProcesses { get; set; } = false;
         public bool ShowMessageWindows { get; set; } = true;

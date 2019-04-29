@@ -234,4 +234,7 @@
   <data name="WorkWithProcess" xml:space="preserve">
     <value>Work with process</value>
   </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Hello</value>
+  </data>
 </root>

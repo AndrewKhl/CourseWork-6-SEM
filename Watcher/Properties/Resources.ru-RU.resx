@@ -220,10 +220,10 @@
     <value>Темы</value>
   </data>
   <data name="UnregDevice" xml:space="preserve">
-    <value>Незарегестрированный процесс обнаружен</value>
+    <value>Незарегестрированное устройство обнаружено</value>
   </data>
   <data name="UnregProcess" xml:space="preserve">
-    <value>Незарегестрированое устройство обнаружено</value>
+    <value>Незарегестрированый процесс обнаружен</value>
   </data>
   <data name="UseProcess" xml:space="preserve">
     <value>Использовать только разрешённые процессы</value>
@@ -233,5 +233,8 @@
   </data>
   <data name="State" xml:space="preserve">
     <value>Состояние</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Привет</value>
   </data>
 </root>

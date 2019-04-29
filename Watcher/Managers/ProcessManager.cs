@@ -78,7 +78,7 @@ namespace Watcher
             {
                 _currentCheck = 0;
                 foreach (var proc in Process.GetProcesses())
-                    if (!GoodProcess.Contains(proc.ProcessName) && proc.ProcessName != "backgroundTaskHost")
+                    if (!GoodProcess.Contains(proc.ProcessName) && proc.ProcessName != "backgroundTaskHost" && proc.ProcessName != "Server")
                         _logger.LogBadProcess(proc.ProcessName, client);
 
                 CheckUSB(client);
