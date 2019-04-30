@@ -163,11 +163,11 @@ In remote mode, it is useful for controlling equipment (for example, during an e
 
 При запуске сервера откроется консольное окно, в котором надо поочередно ввести IP адрес сервера и его порт. Если оставить поля ввода пустыми, будут применены настройки по умолчанию:
 
-![server_interface](pictures/server.png)
+![server_interface](pictures/Server.png)
 
 Сервер представляет собой консоль с набором команд, которые можно посмотреть набрав *?*. Если ваш сервер запущен, вы можете ввести такое же IP и порт в программу до её запуска. Если данные корректны то вы получите следущее сообщение:
 
-![server_ok](pictures/serverOk.png)
+![server_ok](pictures/ServerOk.png)
 
 Если данные не верны или превышен лимит ожидания, то сообщение будет следущим: 
 
@@ -175,4 +175,4 @@ In remote mode, it is useful for controlling equipment (for example, during an e
 
 Если сервер подключён успешно, то на него будут приходить уведомления об нарушениях с подключённых ему клиентов: 
 
-![server_work](pictures/serverWork.png)
+![server_work](pictures/ServerWork.png)
